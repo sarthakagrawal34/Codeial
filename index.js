@@ -7,7 +7,8 @@ const app = express();
 //Define the port on which the server will be run
 const port = 8000;
 
-
+// use express routes
+app.use('/', require('./routes')); // or app.use('/', require('./routes/index'));
 
 
 
