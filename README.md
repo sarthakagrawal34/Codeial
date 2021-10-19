@@ -83,4 +83,6 @@ Controllers are the thing that directly responds to each HTTP Request that comes
 ## Installing EJS & Set Up the View Engine
 We need to send something back to the browser in HTML format from an HTML file from the Views folder using View Engine. **app.set()** is an object where different properties are predefined {keys are present}. Whenever we put a value of those keys, the express app takes up those values and does something with those values.
 
-1. 
+1. First of all install ejs by: **npm install ejs**. We will see a new dependency in package.json.
+2. Set view engine as ejs in index.js file by: **app.set('view engine', 'ejs');**
+3. Set the path for the folder views by: **app.set('views', './views');**

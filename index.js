@@ -7,9 +7,14 @@ const app = express();
 //Define the port on which the server will be run
 const port = 8000;
 
-// use express routes 
+// Use express routes 
 app.use('/', require('./routes')); // or app.use('/', require('./routes/index'));
 
+//Set ejs as view engine
+app.set('view engine', 'ejs');
+
+//Set the path for views folder
+app.set('views', './views'); //or app.set('views', path.join((__dirname,'views')))
 
 
 // To bind and listen the connections on the specified host and port.
