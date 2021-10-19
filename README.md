@@ -77,8 +77,8 @@ Controllers are the thing that directly responds to each HTTP Request that comes
         router.use('/users', require('./users'));
         -->
 7. Add everything to git and commit it.
-
-## Add another route and controller naming posts_controller and another action in home and user as a assignment
+8. Add another route and controller naming posts_controller and another action in home and user as a assignment.
+9. Add everything to git and commit it.
 
 ## Installing EJS & Set Up the View Engine
 We need to send something back to the browser in HTML format from an HTML file from the Views folder using View Engine. **app.set()** is an object where different properties are predefined {keys are present}. Whenever we put a value of those keys, the express app takes up those values and does something with those values.
@@ -86,3 +86,10 @@ We need to send something back to the browser in HTML format from an HTML file f
 1. First of all install ejs by: **npm install ejs**. We will see a new dependency in package.json.
 2. Set view engine as ejs in index.js file by: **app.set('view engine', 'ejs');**
 3. Set the path for the folder views by: **app.set('views', './views');**
+4. Now in views folder add a new file naming: **home.ejs**. Create a simple html file.
+5. Now in home_controller first comment the direct html sending and then using the function **res.render()** render the ejs file: 
+    <!-- return res.render('home', {
+        title: "Home"
+    }); -->
+6. Do same for users_controller and made a users.ejs file in views and render it.
+7. Add everything to git and commit.

@@ -4,7 +4,12 @@
 //Exporting module to browser when the route request this controller
 module.exports.home=function(req,res)
 {
-    res.end('<h1>Express is up for Codeial!</h1>');
+    // res.end('<h1>Express is up for Codeial!</h1>');
+    
+    // Now use home.ejs file for rendering
+    return res.render('home', {
+        title: "Home"
+    });
 }
 
 

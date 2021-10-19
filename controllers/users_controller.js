@@ -1,6 +1,11 @@
 //Exporting module to browser when the route request this controller
 module.exports.profile = function(req,res){
-    res.end('<h1>User Profile</h1>');
+    // res.end('<h1>User Profile</h1>');
+
+    // Now use users.ejs file for rendering
+    return res.render('users',{
+        title: "User"
+    });
 };
 
 //Adding another action for about
