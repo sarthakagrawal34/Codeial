@@ -10,8 +10,11 @@ const usersController = require('../controllers/users_controller');
 //To test that whether the file is loaded
 console.log("Users Router loaded");
 
-//To access the home controller action
+//To access the home controller action when route is /profile
 router.get('/profile', usersController.profile);
+
+//To access the home controller action when route is /about
+router.get('/about', usersController.about);
 
 
 //Exporting the module

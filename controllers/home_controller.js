@@ -6,3 +6,9 @@ module.exports.home=function(req,res)
 {
     res.end('<h1>Express is up for Codeial!</h1>');
 }
+
+
+// Another action for home controller
+module.exports.settings = function(req,res){
+    res.end('<a href="#">Home Setting</a>');
+}

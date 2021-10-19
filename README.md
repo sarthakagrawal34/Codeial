@@ -76,3 +76,11 @@ Controllers are the thing that directly responds to each HTTP Request that comes
         router.get('/', homeController.home);
         router.use('/users', require('./users'));
         -->
+7. Add everything to git and commit it.
+
+## Add another route and controller naming posts_controller and another action in home and user as a assignment
+
+## Installing EJS & Set Up the View Engine
+We need to send something back to the browser in HTML format from an HTML file from the Views folder using View Engine. **app.set()** is an object where different properties are predefined {keys are present}. Whenever we put a value of those keys, the express app takes up those values and does something with those values.
+
+1. 
