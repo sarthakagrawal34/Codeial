@@ -4,7 +4,7 @@ module.exports.profile = function(req,res){
 
     // Now use users.ejs file for rendering
     return res.render('users',{
-        title: "User"
+        title: "User Profile"
     });
 };
 
