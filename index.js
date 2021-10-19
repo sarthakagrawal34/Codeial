@@ -7,6 +7,12 @@ const app = express();
 //Define the port on which the server will be run
 const port = 8000;
 
+//Requiring the ejs layout library
+const expressLayouts = require('express-ejs-layouts');
+
+//Use the ejs layout before the routes
+app.use(expressLayouts);
+
 // Use express routes 
 app.use('/', require('./routes')); // or app.use('/', require('./routes/index'));
 

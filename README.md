@@ -119,4 +119,28 @@ some part needs to be changed and can be filled in as in when needed.
 ## Implementing partials
 1. Make a _header and _footer ejs file and use this in home.ejs and users.ejs by:
     **<%- include('_header'); %>**  &&  **<%- include('_footer'); %>**
+2. NOTE - We are using different naming conventions for partial files to make them separate from all the other ejs files. Hence we have used **_filename.ejs**.
 
+## Creating Layouts
+Generally, a website can have multiple different layouts but for now, we are focusing on
+building a common layout for our whole website.
+We are going to use the library for layout that is **express-ejs-layout**.
+1. Install the library **npm install express-ejs-layouts**. It can be seen in package.json dependency.
+2. We have to create a file in the views folder **layout.ejs**.
+3. In index.js { entry point } we need to require the library we have installed by:
+    **const expressLayouts = require('express-ejs-layouts');**
+4. We have to tell our app to use that library before requiring the routes in an index.js file { entry point } by:
+    **app.use(expressLayouts);**
+5. In layout.ejs copy the same code of { home.ejs } or { user_profile.ejs } and in the
+variable part do as follows:-
+    <!-- <body>
+        <%- include('_header'); %>
+        <%- body %>
+        <%- include('_footer'); %>
+    </body> -->
+    
+6. Remove everything from { user_profile.ejs } & { home.ejs } except the variable part
+in both the files.
+7. So Layout gets rendered, body gets filled with whatever it is there in { user_profile.ejs } & { home.ejs }.
+8. Express ejs layouts is being used by the app it finds a layout that should be a wrapper that should be covering the { user_profile.ejs}, so the wrapper is rendered also the { user_profile.ejs} is rendered together with it and it is sent it to the browser.
+9. Combining { user_profile } and layout, filling the { user_profile } in the place of the body and it is sent back to the browser.
