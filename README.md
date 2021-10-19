@@ -55,3 +55,24 @@ Controllers are the thing that directly responds to each HTTP Request that comes
 6. Requiring the home_controller inside the route index.js: 
     **const homeController = require('../controllers/home_controller');**
 7. To access the home controller action inside route: **router.get('/', homeController.home);**
+
+
+## Again git add . the changes and commit it
+
+## Add second router and controller
+1. Create a file in controller **users_controller**.
+● Export an action corresponding to users_controller i.e profile by: **module.exports.profile = function(req,res){}**
+2. Create a route for the controller to be accessible inside the route folder named as **users.js**.
+3. Repeat the same steps that we used to create the previous route index.js.
+4. We need to map a route to the users_controller profile action.
+        <!-- const router = express.Router();
+            const usersController = require('../controllers/users_controller');
+            console.log("Users Router loaded");
+            router.get('/profile', usersController.profile);
+            module.exports = router; -->
+5. Now to be used by main server we make changes in index of routers that is we use it as a list of routes.
+6. Index router was accessing the home_controller. Considering index.js as the index or root of the route, we want this route to be controlling all the other routes or having a list of all the other routes. For that in index.js route we need to do:-
+        <!-- 
+        router.get('/', homeController.home);
+        router.use('/users', require('./users'));
+        -->
