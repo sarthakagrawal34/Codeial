@@ -95,26 +95,25 @@ We need to send something back to the browser in HTML format from an HTML file f
 7. Add everything to git and commit.
 
 ## Using Partials and Layouts
+   ### Understanding Partials in Views
+    ● Partials (Partial code put into another file) - The advantage of EJS is that it
+    combines data and a template to produce HTML. This makes our code scalable and
+    manageable. One of the most important features of EJS is its use of partials. Using
+    partials, you may write a piece of code just once, and use it at many places as and
+    when required.
+    ● Whenever we have some piece of code that is either very long or a piece of code
+    that is used again and again in different files, we may store that in a separate file,
+    and then re-use it wherever it needs to be added. One such example would be the
+    creation of a NavBar.
 
-### Understanding Partials in Views
-● Partials (Partial code put into another file) - The advantage of EJS is that it
-combines data and a template to produce HTML. This makes our code scalable and
-manageable. One of the most important features of EJS is its use of partials. Using
-partials, you may write a piece of code just once, and use it at many places as and
-when required.
-● Whenever we have some piece of code that is either very long or a piece of code
-that is used again and again in different files, we may store that in a separate file,
-and then re-use it wherever it needs to be added. One such example would be the
-creation of a NavBar.
-
-### Understanding Layout in Views
-● Layouts - Layouts enable us to dynamically fix content or elements to a page in
-such a way that even if a different page is requested, the content remains but the
-page is successfully accessed.
-● We can put in any layout that we want the website to look like into one file &
-whatever variables need to be put in or if the central content needs to be changed,
-we can just tell it using our view engine that this is the layout of the website wherein
-some part needs to be changed and can be filled in as in when needed.
+   ### Understanding Layout in Views
+    ● Layouts - Layouts enable us to dynamically fix content or elements to a page in
+    such a way that even if a different page is requested, the content remains but the
+    page is successfully accessed.
+    ● We can put in any layout that we want the website to look like into one file &
+    whatever variables need to be put in or if the central content needs to be changed,
+    we can just tell it using our view engine that this is the layout of the website wherein
+    some part needs to be changed and can be filled in as in when needed.
 
 ## Implementing partials
 1. Make a _header and _footer ejs file and use this in home.ejs and users.ejs by:
@@ -144,3 +143,22 @@ in both the files.
 7. So Layout gets rendered, body gets filled with whatever it is there in { user_profile.ejs } & { home.ejs }.
 8. Express ejs layouts is being used by the app it finds a layout that should be a wrapper that should be covering the { user_profile.ejs}, so the wrapper is rendered also the { user_profile.ejs} is rendered together with it and it is sent it to the browser.
 9. Combining { user_profile } and layout, filling the { user_profile } in the place of the body and it is sent back to the browser.
+
+
+## Setting up and using static files
+1. Firstly we need to tell in which folder the app { index.js } should look out for static files.
+    **app.use(express.static('./assets'));**
+2. Create assets folder in codeial using **mkdir assets** and then in assets use **mkdir css js images** to create 
+    3 folders.
+3. Now in css create layout.css and link it to layout.ejs
+    <link rel="stylesheet" href="/css/layout.css"> <!-- in href it is automatically looking into assets folder as we use static in index.js-->>
+    
+    ### Static Files For Pages
+    1. The app should automatically render the link tag into the head of the layout so to do
+       that -
+    2. Just below app.use(express.static (‘./assets’)) in { index.js } {Entry point } - Extract style and scripts from the sub pages into the layout using -
+        <!-- app.set('layout extractStyles',true);
+        app.set('layout extractScripts',true); -->
+    3. Go to { layout. ejs } wherever we need to put up the style tag we just need to do -
+        <!-- <%- style -%> -->
+

@@ -10,6 +10,13 @@ const port = 8000;
 //Requiring the ejs layout library
 const expressLayouts = require('express-ejs-layouts');
 
+// Use the static files
+app.use(express.static('./assets'));
+
+//extracting styles and scripts from subpages
+app.set('layout extractStyles',true);
+app.set('layout extractScripts',true);
+
 //Use the ejs layout before the routes
 app.use(expressLayouts);
 
