@@ -10,6 +10,9 @@ const port = 8000;
 //Requiring the ejs layout library
 const expressLayouts = require('express-ejs-layouts');
 
+//Importing the database
+const db = require('./config/mongoose');
+
 // Use the static files
 app.use(express.static('./assets'));
 

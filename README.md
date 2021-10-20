@@ -1,4 +1,5 @@
-#
+# Project- Codeial
+A project to learn backend in which learning how to create directories, express server, routes, controllers, views, assets, and database and add to git simultaneously.
 
 ## Some tricks used in the project
 1. Use **interpolation method**. It is the process of embedding an expression into part of a string. symbols used are **` `**.
@@ -161,4 +162,28 @@ in both the files.
         app.set('layout extractScripts',true); -->
     3. Go to { layout. ejs } wherever we need to put up the style tag we just need to do -
         <!-- <%- style -%> -->
+    4. Whenever there is something termed as a link tag or a script tag in the body, they are automatically put on the top, at their correct positions.
 
+## Final step is to setting up the datbase
+1. First make a {mongoose.js} in config folder to setup the MongoDB. Then do **npm install mongoose** which install a package that can be seen in package.json dependency.
+2. Require mongoose in { mongoose.js } by **const mongoose=require('mongoose');**
+3. We need to provide a connection to the database by: **mongoose.coonect('mongodb://localhost/codeial_development');**
+4. Whenever there is an error while connecting to the database we need to console that, This will display the console.log like an error.
+    <!-- // acquire the connection(to check if its successful)
+    const db= mongoose.connection;
+
+    //error
+    db.on('error', console.error.bind(console, "error connecting to db"));
+
+    //up and running then print the message
+    db.once('open', function(){
+        console.log("Connected to database :: MongoDB");
+    }); -->
+
+5. If the database is connected properly one callback function will be called.
+6. To make that {mongoose.js } file usable we need to export it by : **module.exports=db**
+7. Require mongoose in { index.js } [Entry point]. by: **const db=require('./config/mongoose');**
+
+
+
+**------------------This Ends the project of how node.js works-----------------------------------------------**
