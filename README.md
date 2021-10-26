@@ -29,7 +29,7 @@ A project to learn backend in which learning how to create directories, express 
 2. Then we don't want to upload **node_modules** folder as it is very large and it can be easily install so we add this to **.gitignore file**.
 3. Now next step is to add every thing to git by: **git add .**
 4. Can check by **git status and git log**.
-5. Adding this on remote origin that is github by:
+5. Adding this on remote origin that is github.
 
 
 ## Setup the Express Router
@@ -108,13 +108,9 @@ We need to send something back to the browser in HTML format from an HTML file f
     creation of a NavBar.
 
    ### Understanding Layout in Views
-    ● Layouts - Layouts enable us to dynamically fix content or elements to a page in
-    such a way that even if a different page is requested, the content remains but the
-    page is successfully accessed.
+    ● Layouts - Layouts enable us to dynamically fix content or elements to a page in such a way that even if a different page is requested, the content remains but the page is successfully accessed.
     ● We can put in any layout that we want the website to look like into one file &
-    whatever variables need to be put in or if the central content needs to be changed,
-    we can just tell it using our view engine that this is the layout of the website wherein
-    some part needs to be changed and can be filled in as in when needed.
+    whatever variables need to be put in or if the central content needs to be changed, we can just tell it using our view engine that this is the layout of the website wherein some part needs to be changed and can be filled in as in when needed.
 
 ## Implementing partials
 1. Make a _header and _footer ejs file and use this in home.ejs and users.ejs by:
@@ -139,8 +135,7 @@ variable part do as follows:-
         <%- include('_footer'); %>
     </body> -->
     
-6. Remove everything from { user_profile.ejs } & { home.ejs } except the variable part
-in both the files.
+6. Remove everything from { user_profile.ejs } & { home.ejs } except the variable part in both the files.
 7. So Layout gets rendered, body gets filled with whatever it is there in { user_profile.ejs } & { home.ejs }.
 8. Express ejs layouts is being used by the app it finds a layout that should be a wrapper that should be covering the { user_profile.ejs}, so the wrapper is rendered also the { user_profile.ejs} is rendered together with it and it is sent it to the browser.
 9. Combining { user_profile } and layout, filling the { user_profile } in the place of the body and it is sent back to the browser.
@@ -183,6 +178,61 @@ in both the files.
 5. If the database is connected properly one callback function will be called.
 6. To make that {mongoose.js } file usable we need to export it by : **module.exports=db**
 7. Require mongoose in { index.js } [Entry point]. by: **const db=require('./config/mongoose');**
+
+## Now to use the database for Manual Authentication
+Authentication means establishing your identity. First, we will learn how to establish the identity manually then we will look at the drawbacks { extra code that we have to write }. Then we will be using a library for authentication.
+
+The steps we will be looking at in this module -
+● We send the username and password to the server.
+● The server will receive the data and verify the identity from the database where, all the data is being stored.
+● After that, It will create a token that will establish the user identity and send it back to the browser that stores it.
+● Whenever the browser sends another request for fetching some data, it will send
+the stored token alongside every request.
+● The server will identify the identity of the user with that request.
+● The browser will then serve user-specific data
+● The browser will delete the token on sign-out that will lose the user identity.
+
+### Setup the userSchema
+1. In modele folder make a new file {user.js}
+2. Require mongoose library as **const mongoose= require('mongoose');**
+3. Now defining the UserSchema which tells that how should it be stored in database.
+4. Whenever you create a new object the database should store a field called created
+at and whenever you update that object the database should store a field called
+updated at which gets updated. These two fields are managed by the mongoose
+itself using the **timestamps** property.
+5. Declaring a collection for the fields to be stored in db or to tell mongoose that User is the collection of all the schema by:
+    **const User = mongoose.model('User', userSchema);**
+6. Exporting the module by: **module.exports = User;**
+
+### Now Rendering Sign-In and Sign-up pages
+1. Create two ejs file for sign in and sign up.
+2. Then in users_controller add 2 action corresponding to the two ejs files.
+3. Now in routes also add 2 routes for the 2 conroller actions.
+4. The type of request for both pages will be a GET request.
+5. Now create form with method=post in both the ejs file and create a action in    
+    users_controller for the form action.
+
+### Now understanding cookies
+● A cookie is a file that is stored by the browser. It is sent with every request to the server and the server sends back the same file to the browser.
+● This file can be edited at the browser or the server level.
+● It is used for a lot of purposes in terms of storing data related to the user,
+establishing the user’s identity, or storing the product that the user has browsed in.
+● A cookie is a file that contains key-value pairs.
+● Browser is the environment in which the cookies reside. Thus, if free space is filled by the cookies in the browser, it will automatically clear all the cookies present over there.
+● The key-value pair is stored in an encrypted manner.
+
+### Creating and alternating cookie
+1. For reading and writing into cookies, we will be using a library called cookie-parser 
+2. Install the library using the command **npm install cookie-parser**
+3. Require the installed library in the index.js file by **const cookie = require('cookie-parser');**
+4. We have to tell the app to use the library in the middleware.
+5. We have to set up the cookie parser using the app. use method. **app.use(cookieParser();**
+6. Now we can play with the cookie in the dev tools in the application area.
+7. In application cookie our server is present and there we can provide key-value pair which can be accessed in controller by **req.cookies** and can be alter by **res.cookie('key',value);**
+
+
+
+
 
 
 
