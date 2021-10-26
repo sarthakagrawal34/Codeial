@@ -15,6 +15,6 @@ module.exports.home=function(req,res)
 
 
 // Another action for home controller
-module.exports.settings = function(req,res){
-    res.end('<a href="#">Home Setting</a>');
-}
+// module.exports.settings = function(req,res){
+//     res.end('<a href="#">Home Setting</a>');
+// }
