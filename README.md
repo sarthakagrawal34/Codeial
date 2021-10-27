@@ -243,6 +243,17 @@ establishing the user’s identity, or storing the product that the user has bro
 
 ### Setting up the user createSession action in users_controller
 1. Switch to new branch by: **git checkout -b manual-local-auth** for user sign-in
+2. We have to establish the identity of the user of the system by signing in.
+3. We have to check whether the user exists.
+    ○ If the user exists, we have to check whether the password entered is correct or not.
+4. We have to match the password entered by the user to the password present in the database.
+5. If both the passwords match, then we will store the user’s identity in the cookie and send it to the browser.
+6. If both the passwords don’t match we will redirect the user back to the sign-in page.
+7. For more details see the **createSession** action in users_controller file.
+
+
+### Show Details of Signed in User
+1. Now we will send the user's sign-in information to the profile page so we change profile action.
 2. We have to show the user’s information on the profile page.
 3. The user should be able to access the profile page only when sign-in is complete.
 4. If the user is not authenticated, then they should be redirected back to the sign-in page.
@@ -250,7 +261,7 @@ establishing the user’s identity, or storing the product that the user has bro
     ○ If yes, then we have to find the user.
 6. If the user is not found, redirect the user to the sign-in page.
 7. If the user is found, then render the user to the { user_profile } page which will contain all the information about the user.
-8. For more details see the **createSession** action in users_controller file.
+8. For more details See the **profile** action in the users_controller file.
 
 
 
