@@ -230,6 +230,43 @@ establishing the user’s identity, or storing the product that the user has bro
 6. Now we can play with the cookie in the dev tools in the application area.
 7. In application cookie our server is present and there we can provide key-value pair which can be accessed in controller by **req.cookies** and can be alter by **res.cookie('key',value);**
 
+### Setting up the create action in user_controller
+1. We will create the user through the signup form that we have created and save that user in the database to establish the identity of the user. 
+2. We will allow that user to be authenticated.
+3. Once that user is authenticated, the next step would be to show the details of the user on the profile page.
+4. We will remove the cookie after the user signs out of our webpage.
+5. There can be two cases-
+    ○   If the user already exists, we do not need to recreate his data.
+    ○   If the user does not exist in the database, we will store all the data we have collected in the database.
+6. For more details see the **create** action in users-controller file.
+7. add to git and switch to new branch by: **git checkout -b manual-local-auth** for user sign-in
+
+### Setting up the user createSession action in users_controller
+1. Switch to new branch by: **git checkout -b manual-local-auth** for user sign-in
+2. We have to establish the identity of the user of the system by signing in.
+3. We have to check whether the user exists.
+    ○ If the user exists, we have to check whether the password entered is correct or not.
+4. We have to match the password entered by the user to the password present in the database.
+5. If both the passwords match, then we will store the user’s identity in the cookie and send it to the browser.
+6. If both the passwords don’t match we will redirect the user back to the sign-in page.
+7. For more details see the **createSession** action in users_controller file.
+
+
+### Show Details of Signed in User
+1. Now we will send the user's sign-in information to the profile page so we change profile action.
+2. We have to show the user’s information on the profile page.
+3. The user should be able to access the profile page only when sign-in is complete.
+4. If the user is not authenticated, then they should be redirected back to the sign-in page.
+5. We have to check if the user-id is present inside the cookies.
+    ○ If yes, then we have to find the user.
+6. If the user is not found, redirect the user to the sign-in page.
+7. If the user is found, then render the user to the { user_profile } page which will contain all the information about the user.
+8. For more details See the **profile** action in the users_controller file.
+
+### Authentication using passport.js
+We have already done manual authentication in the app, now it is time to make the code or application more efficient and secure using a library called Passport. We will be setting up a passport for the first time in the application.
+**Note :**
+We have to checkout to the master branch back because we have created the manual local authentication branch at a point where the common code is in the master branch. Till signup, the code remains the same when we put in the authentication that is where we differentiate the code.
 
 
 
