@@ -22,5 +22,8 @@ router.get('/sign-in', usersController.signIn);
 //To access the user controller action when route is /create and post it in the database
 router.post('/create', usersController.create);
 
+//To access the user controller action when route is /create-session and post it in the database
+router.post('/create-session', usersController.createSession);
+
 //Exporting the module
 module.exports = router;

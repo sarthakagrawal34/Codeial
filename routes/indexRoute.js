@@ -14,10 +14,10 @@ console.log("Home Router loaded");
 router.get('/', homeController.home);
 
 //To access the home controller setting action
-router.get('/setting', homeController.settings);
+// router.get('/setting', homeController.settings);
 
 //To access the user controller action
-router.use('/users', require('./users'));
+router.use('/users', require('./usersRoute'));
 
 //To access the post controller action
 router.use('/posts', require('./posts'));

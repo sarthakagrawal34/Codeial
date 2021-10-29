@@ -32,7 +32,7 @@ app.set('layout extractScripts',true);
 app.use(expressLayouts);
 
 // Use express routes 
-app.use('/', require('./routes')); // or app.use('/', require('./routes/index'));
+app.use('/', require('./routes/indexRoute')); // or app.use('/', require('./routes/index'));
 
 //Set ejs as view engine
 app.set('view engine', 'ejs');

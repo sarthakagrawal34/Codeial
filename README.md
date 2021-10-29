@@ -36,11 +36,11 @@ A project to learn backend in which learning how to create directories, express 
 Routes are the entry point for all the requests from the browser.
 The express. Router() function is used to create a new router object. This function is used when you want to create a new router object in your program to handle requests.
 
-1. Add **index.js** file in routes folder, which is the entry point for all the routes and require express in it. 
+1. Add **indexRoute.js** file in routes folder, which is the entry point for all the routes and require express in it. 
 2. Note: Requiring express will not create a new instance of express but will fetch the existing express.
 3. Now calling the express router by: **const router=express.Router();**
 4. And now finally export the router module so that it can be use anywhere by: **modules.exports=router;**
-5. Now app have to use this module so in index.js server we do: **app.use('\', require('./routes'));**
+5. Now app have to use this module so in index.js server we do: **app.use('/', require('./routes'));**
 
 
 ## Setup the Express Controller
@@ -63,7 +63,7 @@ Controllers are the thing that directly responds to each HTTP Request that comes
 ## Add second router and controller
 1. Create a file in controller **users_controller**.
 ● Export an action corresponding to users_controller i.e profile by: **module.exports.profile = function(req,res){}**
-2. Create a route for the controller to be accessible inside the route folder named as **users.js**.
+2. Create a route for the controller to be accessible inside the route folder named as **usersRoute.js**.
 3. Repeat the same steps that we used to create the previous route index.js.
 4. We need to map a route to the users_controller profile action.
         <!-- const router = express.Router();
@@ -72,10 +72,10 @@ Controllers are the thing that directly responds to each HTTP Request that comes
             router.get('/profile', usersController.profile);
             module.exports = router; -->
 5. Now to be used by main server we make changes in index of routers that is we use it as a list of routes.
-6. Index router was accessing the home_controller. Considering index.js as the index or root of the route, we want this route to be controlling all the other routes or having a list of all the other routes. For that in index.js route we need to do:-
+6. Index router was accessing the home_controller. Considering index.js as the index or root of the route, we want this route to be controlling all the other routes or having a list of all the other routes. For that in indexRoute.js route we need to do:-
         <!-- 
         router.get('/', homeController.home);
-        router.use('/users', require('./users'));
+        router.use('/users', require('./usersRoute'));
         -->
 7. Add everything to git and commit it.
 8. Add another route and controller naming posts_controller and another action in home and user as a assignment.
