@@ -1,5 +1,7 @@
 // Including exist express library
 const express = require('express');
+// Including passport library
+const passport = require('passport');
 
 // Calling express router
 const router = express.Router();
@@ -21,6 +23,16 @@ router.get('/sign-in', usersController.signIn);
 
 //To access the user controller action when route is /create and post it in the database
 router.post('/create', usersController.create);
+
+// To access the user controller when route is /create-session 
+//use passport as a middlewaare to authenticate
+router.post('/create-session', passport.authenticate(
+    // strategy is local so we give local
+    'local',
+    // when there is failure redirect to /users/sign-in page
+    {failureRedirect: '/users/sign-in'}
+), usersController.createSession);
+
 
 //Exporting the module
 module.exports = router;
