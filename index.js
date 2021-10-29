@@ -39,6 +39,9 @@ app.set('layout extractScripts',true);
 //Use the ejs layout before the routes
 app.use(expressLayouts);
 
+// Use express routes 
+app.use('/', require('./routes/indexRoute')); // or app.use('/', require('./routes/index'));
+
 //Set ejs as view engine
 app.set('view engine', 'ejs');
 //Set the path for views folder
@@ -66,6 +69,9 @@ app.use(passport.session());
 
 // Use express routes 
 app.use('/', require('./routes')); // or app.use('/', require('./routes/index'));
+
+
+
 
 
 // To bind and listen the connections on the specified host and port.
