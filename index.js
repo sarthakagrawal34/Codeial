@@ -1,7 +1,7 @@
 // Requiring the express server in the main server
 const express = require('express');
 
-// Require the cookie parser
+// Require the cookie parser library for parsing the cookie information
 const cookieParser = require('cookie-parser');
 
 //Firing the express server
@@ -16,11 +16,11 @@ const expressLayouts = require('express-ejs-layouts');
 //Importing the database
 const db = require('./config/mongoose');
 
-//Importing the express session whuch is used for session cookie
+//Importing the express session which is used for session cookie
 const session = require('express-session');
 //Importing the passport library it is the compulsory step for local passport
 const passport = require('passport');
-//Importing local passport  
+//Importing local passport 
 const passportLocal = require('./config/passport-local-strategy');
 
 //Middlewares
@@ -39,14 +39,13 @@ app.set('layout extractScripts',true);
 //Use the ejs layout before the routes
 app.use(expressLayouts);
 
-
-
 //Set ejs as view engine
 app.set('view engine', 'ejs');
 //Set the path for views folder
 app.set('views', './views'); //or app.set('views', path.join((__dirname,'views')))
 
 // Creating session middleware that takes the session cookies and encrypts them
+// It is fired when the serializUser function is called
 app.use(session({
     name: 'codeial',
     // TODO change the secret before deployement in production mode
@@ -63,14 +62,14 @@ app.use(session({
 }));
 // Tell app to use passport
 app.use(passport.initialize());
-// tell app to use passport.session
-// What does passport.session () do?
+
+// tell app to use passport.session the middleware we created above.
 //passport. session() acts as a middleware to alter the req object and change the 'user' value that is currently the session id (from the client cookie) into the true deserialized user object.
 app.use(passport.session());
 // use set authenticated user function to set the user
-app.subscribe(passport.setAuthenticatedUser);
+app.use(passport.setAuthenticatedUser);
 
-// Use express routes 
+// Use express routes  which contain the all routes library and it's function
 app.use('/', require('./routes/indexRoute')); // or app.use('/', require('./routes/index'));
 
 

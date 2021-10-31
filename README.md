@@ -304,7 +304,7 @@ Let us see the parameters that are important
 
 ### Passing User data to views and restricting page access
 1. We need to restrict the accessibility of sign-in and sign-up pages only when the user is signed out.
-2. We have to access the data of the user on the profile page first that is inside the views in the users.ejs
+2. We have to access the data of the user on the profile page first that is inside the views in the users.ejs.
 
 
 

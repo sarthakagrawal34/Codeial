@@ -12,6 +12,12 @@ module.exports.profile = function(req,res){
 
 // 2nd action for rendering sign up page
 module.exports.signUp = function(req,res){
+    // If the user is already signed-in then sent it to the profile page
+    if(req.isAuthenticated()){ // Here isAuthenticate() is a global function so can we use here
+        console.log("User is already signed-in so why the need to again sign-up?");
+        return res.redirect('./profile');
+    }
+    // else show the user sign-up page to do his signup
     return res.render('user_sign_up',{
         title: "Codeial | Sign Up"
     });
@@ -19,6 +25,13 @@ module.exports.signUp = function(req,res){
 
 // 3rd action for sign in
 module.exports.signIn = function(req,res){
+    // If the user is already signed-in then sent it to the profile page
+    if(req.isAuthenticated()){
+        console.log("User is already signed-in so why the need to again sign-in?")
+        return res.redirect('./profile');
+    }
+
+    // else show the user sign-in page to do his signup
     return res.render('user_sign_in',{
         title: "Codeial | Sign In"
     });
