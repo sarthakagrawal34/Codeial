@@ -127,18 +127,17 @@ We are going to use the library for layout that is **express-ejs-layout**.
     **const expressLayouts = require('express-ejs-layouts');**
 4. We have to tell our app to use that library before requiring the routes in an index.js file { entry point } by:
     **app.use(expressLayouts);**
-5. In layout.ejs copy the same code of { home.ejs } or { user_profile.ejs } and in the
-variable part do as follows:-
+5. In layout.ejs copy the same code of home.ejs or user_profile.ejs and in the variable part do as follows:-
     <!-- <body>
         <%- include('_header'); %>
         <%- body %>
         <%- include('_footer'); %>
     </body> -->
     
-6. Remove everything from { user_profile.ejs } & { home.ejs } except the variable part in both the files.
-7. So Layout gets rendered, body gets filled with whatever it is there in { user_profile.ejs } & { home.ejs }.
-8. Express ejs layouts is being used by the app it finds a layout that should be a wrapper that should be covering the { user_profile.ejs}, so the wrapper is rendered also the { user_profile.ejs} is rendered together with it and it is sent it to the browser.
-9. Combining { user_profile } and layout, filling the { user_profile } in the place of the body and it is sent back to the browser.
+6. Remove everything from user_profile.ejs & home.ejs except the variable part in both the files.
+7. So Layout gets rendered, body gets filled with whatever it is there in user_profile.ejs & home.ejs.
+8. Express ejs layouts is being used by the app it finds a layout that should be a wrapper that should be covering the user_profile.ejs, so the wrapper is rendered also the user_profile.ejs is rendered together with it and it is sent it to the browser.
+9. Combining user_profile and layout, filling the user_profile in the place of the body and it is sent back to the browser.
 
 
 ## Setting up and using static files
@@ -152,7 +151,7 @@ variable part do as follows:-
     ### Static Files For Pages
     1. The app should automatically render the link tag into the head of the layout so to do
        that -
-    2. Just below app.use(express.static (‘./assets’)) in { index.js } {Entry point } - Extract style and scripts from the sub pages into the layout using -
+    2. Just below app.use(express.static (‘./assets’)) in index.js {Entry point } - Extract style and scripts from the sub pages into the layout using -
         <!-- app.set('layout extractStyles',true);
         app.set('layout extractScripts',true); -->
     3. Go to { layout. ejs } wherever we need to put up the style tag we just need to do -
@@ -160,8 +159,8 @@ variable part do as follows:-
     4. Whenever there is something termed as a link tag or a script tag in the body, they are automatically put on the top, at their correct positions.
 
 ## Final step is to setting up the datbase
-1. First make a {mongoose.js} in config folder to setup the MongoDB. Then do **npm install mongoose** which install a package that can be seen in package.json dependency.
-2. Require mongoose in { mongoose.js } by **const mongoose=require('mongoose');**
+1. First make a mongoose.js in config folder to setup the MongoDB. Then do **npm install mongoose** which install a package that can be seen in package.json dependency.
+2. Require mongoose in mongoose.js by **const mongoose=require('mongoose');**
 3. We need to provide a connection to the database by: **mongoose.coonect('mongodb://localhost/codeial_development');**
 4. Whenever there is an error while connecting to the database we need to console that, This will display the console.log like an error.
     <!-- // acquire the connection(to check if its successful)
@@ -176,8 +175,8 @@ variable part do as follows:-
     }); -->
 
 5. If the database is connected properly one callback function will be called.
-6. To make that {mongoose.js } file usable we need to export it by : **module.exports=db**
-7. Require mongoose in { index.js } [Entry point]. by: **const db=require('./config/mongoose');**
+6. To make that mongoose.js file usable we need to export it by : **module.exports=db**
+7. Require mongoose in index.js [Entry point]. by: **const db=require('./config/mongoose');**
 
 ## Now to use the database for Manual Authentication
 Authentication means establishing your identity. First, we will learn how to establish the identity manually then we will look at the drawbacks { extra code that we have to write }. Then we will be using a library for authentication.
@@ -186,20 +185,16 @@ The steps we will be looking at in this module -
 ● We send the username and password to the server.
 ● The server will receive the data and verify the identity from the database where, all the data is being stored.
 ● After that, It will create a token that will establish the user identity and send it back to the browser that stores it.
-● Whenever the browser sends another request for fetching some data, it will send
-the stored token alongside every request.
+● Whenever the browser sends another request for fetching some data, it will send the stored token alongside every request.
 ● The server will identify the identity of the user with that request.
 ● The browser will then serve user-specific data
 ● The browser will delete the token on sign-out that will lose the user identity.
 
 ### Setup the userSchema
-1. In modele folder make a new file {user.js}
+1. In model folder make a new file **user.js**
 2. Require mongoose library as **const mongoose= require('mongoose');**
 3. Now defining the UserSchema which tells that how should it be stored in database.
-4. Whenever you create a new object the database should store a field called created
-at and whenever you update that object the database should store a field called
-updated at which gets updated. These two fields are managed by the mongoose
-itself using the **timestamps** property.
+4. Whenever you create a new object the database should store a field called created at and whenever you update that object the database should store a field called updated at which gets updated. These two fields are managed by the mongoose itself using the **timestamps** property.
 5. Declaring a collection for the fields to be stored in db or to tell mongoose that User is the collection of all the schema by:
     **const User = mongoose.model('User', userSchema);**
 6. Exporting the module by: **module.exports = User;**
@@ -209,14 +204,12 @@ itself using the **timestamps** property.
 2. Then in users_controller add 2 action corresponding to the two ejs files.
 3. Now in routes also add 2 routes for the 2 conroller actions.
 4. The type of request for both pages will be a GET request.
-5. Now create form with method=post in both the ejs file and create a action in    
-    users_controller for the form action.
+5. Now create form with method=post in both the ejs file and create a action in users_controller for the form action.
 
 ### Now understanding cookies
 ● A cookie is a file that is stored by the browser. It is sent with every request to the server and the server sends back the same file to the browser.
 ● This file can be edited at the browser or the server level.
-● It is used for a lot of purposes in terms of storing data related to the user,
-establishing the user’s identity, or storing the product that the user has browsed in.
+● It is used for a lot of purposes in terms of storing data related to the user, establishing the user’s identity, or storing the product that the user has browsed in.
 ● A cookie is a file that contains key-value pairs.
 ● Browser is the environment in which the cookies reside. Thus, if free space is filled by the cookies in the browser, it will automatically clear all the cookies present over there.
 ● The key-value pair is stored in an encrypted manner.
@@ -230,7 +223,7 @@ establishing the user’s identity, or storing the product that the user has bro
 6. Now we can play with the cookie in the dev tools in the application area.
 7. In application cookie our server is present and there we can provide key-value pair which can be accessed in controller by **req.cookies** and can be alter by **res.cookie('key',value);**
 
-### Setting up the create action in user_controller
+### Setting up the create action in users_controller
 1. We will create the user through the signup form that we have created and save that user in the database to establish the identity of the user. 
 2. We will allow that user to be authenticated.
 3. Once that user is authenticated, the next step would be to show the details of the user on the profile page.
@@ -260,7 +253,7 @@ establishing the user’s identity, or storing the product that the user has bro
 5. We have to check if the user-id is present inside the cookies.
     ○ If yes, then we have to find the user.
 6. If the user is not found, redirect the user to the sign-in page.
-7. If the user is found, then render the user to the { user_profile } page which will contain all the information about the user.
+7. If the user is found, then render the user to the user_profile page which will contain all the information about the user.
 8. For more details See the **profile** action in the users_controller file.
 
 ## Authentication using passport.js
@@ -296,6 +289,22 @@ We have to checkout to the main branch back because we have created the manual l
 4. We need to require passport and passport - local - strategy libraries inside the index.js file.
 5. We need to add middleware that takes the session cookies and encrypts them, below the place where we had set up the view.
 6. For more details look index.js server file.
+
+### Setting Current Authenticated User
+Let us see the parameters that are important
+1. We have set up the passport authentication. The user is now getting an identity established on the server and that identity is saved in a session cookie using an express session that is then communicating from the browser to the server.
+2. **saveUninitialized:** whenever there is a request that is not initialized when the user has not logged in, we don’t need to store extra data in the session cookies.
+3. **Resave:** When the identity is established we don’t have to rewrite or save the data if it is not changed.
+4. We will be sending the data from the server about the user to the ejs files.
+5. We have to first check if the user is authenticated or not using the **passport.checkAuthenticated** function that we will create using three parameters {req, res, and next}. This function will internally use the **isAuthenticated** function that is present in passport.js.
+6. If the user is signed in, pass on the request to the next function controller’s action. If the user is not signed in, then redirect the user to the sign-in page
+7. Once the user is signed in, set the users for the views using the **setAuthenticatedUser** function that will again take three parameters req, res, and next. This function will internally use the isAuthenticated function that is present in passport.js in which the req. user contains the currently signed-in user from the session cookie.
+8. Inside the routes folder in the usersRoute.js, we have to use all the functionalities that we have implemented.
+9. For more details see the passport-local-strategy file and usersRoute file
+
+### Passing User data to views and restricting page access
+1. We need to restrict the accessibility of sign-in and sign-up pages only when the user is signed out.
+2. We have to access the data of the user on the profile page first that is inside the views in the users.ejs
 
 
 

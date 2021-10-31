@@ -39,8 +39,7 @@ app.set('layout extractScripts',true);
 //Use the ejs layout before the routes
 app.use(expressLayouts);
 
-// Use express routes 
-app.use('/', require('./routes/indexRoute')); // or app.use('/', require('./routes/index'));
+
 
 //Set ejs as view engine
 app.set('view engine', 'ejs');
@@ -52,7 +51,9 @@ app.use(session({
     name: 'codeial',
     // TODO change the secret before deployement in production mode
     secret: 'blah something',
+    // whenever there is a request that is not initialized { when the user has not logged in }, we don’t need to store extra data in the session cookies.
     saveUninitialized: false,
+    // When the identity is established we don’t have to rewrite or save the data if it is not changed.
     resave:false,
     // Need to set the time after which cookie would be expired automatically
     cookie: {
@@ -66,9 +67,11 @@ app.use(passport.initialize());
 // What does passport.session () do?
 //passport. session() acts as a middleware to alter the req object and change the 'user' value that is currently the session id (from the client cookie) into the true deserialized user object.
 app.use(passport.session());
+// use set authenticated user function to set the user
+app.subscribe(passport.setAuthenticatedUser);
 
 // Use express routes 
-app.use('/', require('./routes')); // or app.use('/', require('./routes/index'));
+app.use('/', require('./routes/indexRoute')); // or app.use('/', require('./routes/index'));
 
 
 

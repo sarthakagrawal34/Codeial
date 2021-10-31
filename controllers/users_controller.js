@@ -4,26 +4,9 @@ const User = require('../models/user');
 
 //Exporting module to browser when the route request this controller
 module.exports.profile = function(req,res){
-    // See whether the user cookie is present 
-    if(req.cookies.user_id){
-        User.findById(req.cookies.user_id, function(err,user){
-            if(err){console.log('Error finding user corresponding to the cookie'); return;}
-            if(user){
-                // Now use users.ejs file for rendering
-                return res.render('users',{
-                    title: "Users Profile",
-                    user: user
-                });
-            }
-            else{
-                return res.redirect('/users/sign-in');
-            }
-        });
-    }
-    // If user cookie not found
-    else{
-        return res.redirect('/users/sign-in');
-    }
+    return res.render('users',{
+        title: "User_profile"
+    });
 }
 
 
@@ -62,7 +45,7 @@ module.exports.create = function(req,res){
     })
 }
 
-// Sign in and create a session for a user and redirect back
+// Sign in and create a session for a user and redirect back to the home page
 module.exports.createSession = function(req,res){
-    return res.redirect('back');
+    return res.redirect('/');
 }

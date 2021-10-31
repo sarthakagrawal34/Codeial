@@ -29,7 +29,9 @@ passport.use(new Localstrategy(
                 // If not then pass false else pass user
                 return done(null, false);
             }
-            // User found and authentification is done and send it to the serializer which serialize the key to the cookie 
+            // User found and authentification is done 
+            //and send it to the serializer which serialize the key to the cookie
+            console.log('Valid User') 
             return done(null,user);
         });
     }  
@@ -37,7 +39,7 @@ passport.use(new Localstrategy(
 
 // Serializing the user to decide which key is to be kept in the cookies and send to the browser then browser deserialize it
 passport.serializeUser(function(user,done){
-    // we are storing id property in the cookie
+    // we are storing id property in the cookie and then it is send to the middleware in index.js for encrypting the cookie
     done(null,user.id);
 })
 
@@ -55,6 +57,29 @@ passport.deserializeUser(function(id,done){
         return done(null,user);
     });
 });
+
+// check if the user is authenticated and setting up the middleware which goes to next if the user is authenticated
+passport.checkAuthentication = function(req, res, next){
+    // if the user is signed-in then pass on the request to the next function (controller's action)
+    if(req.isAuthenticated()){
+        //passing onto next
+        return next();
+    }
+
+    // if the user is not signed-in send the user to sign in page
+    return res.redirect('/users/sign-in');
+}
+
+// set the users for the views using the setAuthenticatedUser function
+passport.setAuthenticatedUser = function(req,res,next){
+    if(req.isAuthenticated()){
+        //req.user contains the current signed in user from the session cookie 
+        //and we are just sending it to the locals for the views
+        res.locals.user = req.user;
+    }
+    // call next function so as to go to the views
+    next();
+}
 
 
 // finally exporting passport module

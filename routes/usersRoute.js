@@ -1,10 +1,11 @@
 // Including exist express library
 const express = require('express');
-// Including passport library
-const passport = require('passport');
 
 // Calling express router
 const router = express.Router();
+
+// Including passport library
+const passport = require('passport');
 
 //Requiring the users_controller
 const usersController = require('../controllers/users_controller');
@@ -13,7 +14,9 @@ const usersController = require('../controllers/users_controller');
 console.log("Users Router loaded");
 
 //To access the user controller action when route is /profile and get the ejs file so we used get not post
-router.get('/profile', usersController.profile);
+router.get('/profile', passport.checkAuthentication, usersController.profile);
+// we provide a middleware so as to check whether the user is signed-in or not. 
+//If not then profile page will not open
 
 //To access the user controller action when route is /sign-up and get the ejs file so we used get not post
 router.get('/sign-up', usersController.signUp);
