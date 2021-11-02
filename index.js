@@ -1,27 +1,24 @@
 // Requiring the express server in the main server
 const express = require('express');
-
 // Require the cookie parser library for parsing the cookie information
 const cookieParser = require('cookie-parser');
-
 //Firing the express server
 const app = express();
-
 //Define the port on which the server will be run
 const port = 8000;
-
 //Requiring the ejs layout library
 const expressLayouts = require('express-ejs-layouts');
-
 //Importing the database
 const db = require('./config/mongoose');
-
 //Importing the express session which is used for session cookie
 const session = require('express-session');
 //Importing the passport library it is the compulsory step for local passport
 const passport = require('passport');
 //Importing local passport 
 const passportLocal = require('./config/passport-local-strategy');
+// Importing the connect-mongo library which stores the session information
+const MongoStore = require('connect-mongo');
+
 
 //Middlewares
 
@@ -49,7 +46,7 @@ app.set('views', './views'); //or app.set('views', path.join((__dirname,'views')
 app.use(session({
     name: 'codeial',
     // TODO change the secret before deployement in production mode
-    secret: 'blah something',
+    secret: 'blahsomething',
     // whenever there is a request that is not initialized { when the user has not logged in }, we don’t need to store extra data in the session cookies.
     saveUninitialized: false,
     // When the identity is established we don’t have to rewrite or save the data if it is not changed.
@@ -58,8 +55,19 @@ app.use(session({
     cookie: {
         // maxAge is in milli seconds
         maxAge: (1000 * 60 * 100)  //this is total to 100 minutes after which cookie will expire
-    }
+    },
+    // Mongo store is is used to store the session cookie in the db
+    store: MongoStore.create(
+        {
+            mongoUrl: 'mongodb://localhost/codeial_development'
+        },
+        // a call back function for error management
+        function(err){
+            console.log(err || 'connect-mongoDb setup ok!');
+        }
+    )
 }));
+
 // Tell app to use passport
 app.use(passport.initialize());
 

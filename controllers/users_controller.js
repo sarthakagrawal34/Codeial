@@ -60,5 +60,15 @@ module.exports.create = function(req,res){
 
 // Sign in and create a session for a user and redirect back to the home page
 module.exports.createSession = function(req,res){
+    // redirect to homepage
+    return res.redirect('/');
+}
+
+// Sign out and destroy session of the user and return back to home page
+module.exports.destroySession = function(req,res){
+    // Function to do logout. The function is provided by the passport library used
+    req.logout();
+
+    // redirect to home page for signing up or signing in
     return res.redirect('/');
 }

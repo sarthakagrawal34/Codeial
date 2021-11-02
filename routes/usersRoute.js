@@ -36,6 +36,11 @@ router.post('/create-session', passport.authenticate(
     {failureRedirect: '/users/sign-in'}
 ), usersController.createSession);
 
+// To access the user controller when route is /sign-out
+router.get('/sign-out', usersController.destroySession);
+
+
+
 
 //Exporting the module
 module.exports = router;

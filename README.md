@@ -256,6 +256,9 @@ The steps we will be looking at in this module -
 7. If the user is found, then render the user to the user_profile page which will contain all the information about the user.
 8. For more details See the **profile** action in the users_controller file.
 
+**--------------------This ends how to setup manual authentication---------------------------**
+
+
 ## Authentication using passport.js
 We have already done manual authentication in the app, now it is time to make the code or application more efficient and secure using a library called Passport. We will be setting up a passport for the first time in the application.
 Passport is authentication middleware for Node. It is designed to serve a singular purpose: authenticate requests. When writing modules, encapsulation is a virtue, so Passport delegates all other functionality to the application. This separation of concerns keeps code clean and maintainable, and makes Passport extremely easy to integrate into an application.
@@ -307,10 +310,45 @@ Let us see the parameters that are important
 2. We have to access the data of the user on the profile page first that is inside the views in the users.ejs.
 
 
+### Setting up Mongo store for session cookies
+1. The session cookies get reset every time the server restarts. This is a problem!!!
+2. We need some persistent storage to keep the cookies on the server. Hence if we store it inside MongoDB, we shall retain the data till there ia sign-out clicked or the cookies get expire due to **maxAge()**
+3. We will be using Mongo Store for persistent storage and a library called connect-mongo.
+4. Install the library using the command **npm install connect-mongo** in the terminal.
+5. We have to require the mongo store library inside the index.js file.
+6. We need to define another key in the **app.use(session())** a method that is a **store**.
+7. For more details see the index.js server file.
+
+### Creating Sign Out
+We will create an action for signing out and see how signing out works with Passport.js
+1. In the views folder inside the _header. ejs create a list of authentication items.
+2. If the user is signed in, then we need to show the user’s name and a link to sign out.
+3. If the user is not signed in, then we need to show the user the sign-in link as well as the sign-up link.
+4. We have to create an action **destroySession()** inside the controllers folder in the users_controller.js file.
+5. We have to create a route inside the route folder in the users.js file.
+
+## Summarizing
+1. We installed the passport library and local strategy package and required them.
+2. We created a new strategy allocated to a middleware wherein we declared the username field to be an email.
+3. If the user is found we returned using the call back done with error null and the user.
+4. If the user is not found or the password doesn’t match we return.
+5. If there is an error we return the error.
+6. The done function is the callback function.
+7. Passport. serialize and passport. deserialize is used to set id as a cookie in the user's browser and to get the id from the cookie when it is then used to get user info in a callback.
+8. We have serialized the user that picks out the information from the user which needs to be fetched in the session cookie.
+9. We have deserialized the user that picks the id from the session cookie and converting it into a user by finding it in the database, for that we have imported the user from the models.
+10. We have a check authentication method that checks whether the user is authenticated or not.
+    ○ If the user is authenticated it will return to the next function that is to be called.
+    ○ If the user is not authenticated then take the user back to the sign-in page.
+11. We need to access the authenticated users in the views. For that, we use the Set Authenticated user method.
+12. Whenever a passport is initialized or a passport session is being used, an authenticated user is also being set.
+13. The session is maintained by the express-session library
+14. We just use the session, keep the name of the session, use the secret key to encrypt the data that is present.
+15. Mongo Store contains the express session that is used to store the session information even when the server restarts it remains in the database so that the signed-in users don’t get reset in case the server restarts.
+16. In the routes folder inside the { users.js } file, we have created a session using the
+passport. authenticate wherein the local authentication is used.
+
+**--------------------This ends how to use passport-local for authentication---------------------------**
 
 
 
-
-
-
-**------------------This Ends the project of how node.js works-----------------------------------------------**
