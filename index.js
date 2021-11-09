@@ -18,9 +18,25 @@ const passport = require('passport');
 const passportLocal = require('./config/passport-local-strategy');
 // Importing the connect-mongo library which stores the session information
 const MongoStore = require('connect-mongo');
+// Importing the SASS middleware library
+const sassMiddleware = require('node-sass-middleware');
 
 
 //Middlewares
+
+// sass middlware just before the server start so as the middleware precompiled the scss file to css file
+app.use(sassMiddleware({
+    // Path from where we pick up the SCSS files to convert them into CSS
+    src: './assets/scss',
+    // Path where we put the CSS files
+    dest: './assets/css',
+    // to display errors coming while compiling
+    debug: true,
+    // everything to be in a single line or do we want it in multiple lines
+    outputStyle: 'extended',
+    // location where the server should look for the CSS files
+    prefix: '/css'
+}));
 
 // express.urlencoded() function is a built-in middleware function in Express to read the request url
 app.use(express.urlencoded());

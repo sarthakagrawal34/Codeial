@@ -2,7 +2,7 @@
 A project to learn backend in which learning how to create directories, express server, routes, controllers, views, assets, and database and add to git simultaneously.
 
 ## Some tricks used in the project
-1. Use **interpolation method**. It is the process of embedding an expression into part of a string. symbols used are **` `**.
+1. Use **interpolation method**. It is the process of embedding an expression into part of a string. symbols used are **backticks** and **$(expressions)**.
 2. Getting rid of doing 'nodemon index.js' again and again change in package.json scripts making 
 **"start":"nodemon index.js"** so now do in terminal **npm start**.
 
@@ -349,6 +349,29 @@ We will create an action for signing out and see how signing out works with Pass
 passport. authenticate wherein the local authentication is used.
 
 **--------------------This ends how to use passport-local for authentication---------------------------**
+
+## SCSS or SASS?
+1. SCSS is the most commonly used and SASS is called the indented syntax.
+2. SCSS stands for ( Sassy Cascading Style Sheets ) and it’s an extension of CSS which adds nested rules, variables, mix in selectors, inheritance, and a lot more features.
+3. Sass (Syntactically Awesome Style Sheets) is an extension of CSS that enables you to use things like variables, nested rules, inline imports, and more. It also helps to keep things organized and allows you to create stylesheets faster.
+4. At the end of it, both SASS and SCSS are converted to look like CSS because browsers only understand CSS.
+5. In SCSS, we need brackets and semicolons for the styling properties but in SASS we don’t need brackets and semicolons.
+
+### Setting Up SCSS
+1. Now it is time to dive into the code and add SCSS in the project. We will be converting the SCSS to CSS later.
+2. We will be using Node SASS middleware which is an npm package.
+3. We will write our code in SCSS. Post that, whenever the server starts, the middleware or the npm package will convert SCSS into CSS.
+4. Whenever the views reference a stylesheet they will be referring to CSS because the CSS thing will be served to the browser.
+5. Install using the command **npm install node-sass**.
+6. After installing, require it in the file index.js by **const sassMiddleware=require('node-sass-middleware');**
+7. We have to create a new folder in assets named **scss** and cut all files from css and paste to scss folder.
+8. We need to put the SASS middleware just before the server is starting because we need those files to be precompiled before the server starts. Whenever the templates ask for CSS, these precompiled files will be given back. The properties inside the app.use would be -
+9. **Source** - Path from where we pick up the SCSS files to convert them into CSS.
+10. **Destination** - Path where we put the CSS files. 
+11. **Debug Mode**- Whatever information we see while the server is running over the terminal, do we want to display some error that is there in the compilation of files while conversion. If yes then set it to true. If it is in **production mode** then we have to set it to false.
+12. **OutputStyle** - Do we want everything to be in a single line or do we want it in multiple lines. If we want in multiple lines then use **extended** otherwise **compressed**.
+13. **Prefix** - It is basically the location where the server should look for the CSS files.
+
 
 
 
