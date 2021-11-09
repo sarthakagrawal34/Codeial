@@ -20,7 +20,7 @@ router.get('/', homeController.home);
 router.use('/users', require('./usersRoute'));
 
 //To access the post controller action
-router.use('/posts', require('./posts'));
+router.use('/posts', require('./postsRoute'));
 
 //For any further routes, access from here
     //router.use('/routerName', require('./routerFile'));

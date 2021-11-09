@@ -401,3 +401,14 @@ We will create posts and comments in the application that we are building. But b
 5. Timestamps automatically introduce two fields created at and updated at.
 6. For more details look into /models/post.js.
 
+### Saving Posts to the DB
+1. We need to go to the views and create a form from where this collection will have a document in it { i.e an entry is created in the database }.
+2. We need to create an action inside the controller to save the data that is coming from the form into the database. We also and a route for mapping the form to the action.
+3. We need to create a new file inside the controllers folder **posts_controller.js** for the actions.
+4. We need to import the post schema that we have created inside the models folder.
+5. We need to create a new file inside the routes folder **posts.js** for mapping theform to the action.
+6. We have created the router and we will call it from index.js file to make it usable.
+7. We need to update this in the action of the form.
+
+
+
