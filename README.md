@@ -383,3 +383,21 @@ passport. authenticate wherein the local authentication is used.
 7. After reloading, the SCSS files will get converted into CSS files from header.scss & footer.scss.
 
 
+## Database Relations (Posts, Comments)
+We will create posts and comments in the application that we are building. But before that, we need to understand how all of these can be added to a database
+
+### Node.js:: Explaining 1:1 and 1:M
+1. Whenever we are storing any data inside the database, we are storing it in such a way that it models some part of the real world.
+2. Let us take an example of the user and a password. Usually, a single user can have one password. Hence, this relationship will always be a 1:1 relationship.
+3. There is an eg of school and students. Usually, one school consists of multiple students so this represents a 1:M relationship or vice-versa M:1.
+4. We have another relationship called M: M which can be represented using theexample of authors and books { One author can have many books and one book can have many authors }.
+5. The relationship between posts and comments will have a 1:M relationship.
+
+### Creating Schema for Posts
+1. We need to create a schema for posts and link it to the users. Whenever a post is posted on a website it has to be coming from a user, someone who is logged in. Thus, a post needs to have a user in it.
+2. We need to create a file inside the models folder **post.js.**
+3. We need to import mongoose inside the file post.js.
+4. For creating a schema we need to use mongoose.Schema method, which will contain multiple fields.
+5. Timestamps automatically introduce two fields created at and updated at.
+6. For more details look into /models/post.js.
+
