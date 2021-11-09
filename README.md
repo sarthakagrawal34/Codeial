@@ -410,5 +410,11 @@ We will create posts and comments in the application that we are building. But b
 6. We have created the router and we will call it from index.js file to make it usable.
 7. We need to update this in the action of the form.
 
+### Display Post and Related User
+1. We will be showing the post on the home page.
+2. We need to find all the posts belonging to a user, then show them inside the home views.
+3. We need to show the name of the user who is posting the posts. For that, we need to prepopulate the user.
+4. Whenever we are loading the post from the database, we will load the whole user and show the desired data of the user on the home page. This is called pre-populating the user.
+5. Initially, the id of the user is only showing on the home page but now we need to fetch the user also from the database.
 
 

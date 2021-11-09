@@ -1,3 +1,5 @@
+// Requiring the Post schema
+const Post = require('../models/post');
 //Defining action name and it's function
     // module.exports.actionName=function(req,res){}
 
@@ -9,10 +11,24 @@ module.exports.home=function(req,res)
     // console.log(req.cookies);
     // res.cookie('user_id',29);
 
-    // Now use home.ejs file for rendering
-    return res.render('home', {
-        title: "Home"
+    //Rendering the post on to the home page
+    // Post.find({},function(err,posts){
+        // Now use home.ejs file for rendering
+    //     return res.render('home', {
+    //         title: "Codeial | Home",
+    //         posts: posts
+    // })
+    // });
+
+    //Populating the user of each post
+    Post.find({}).populate('user').exec(function(err,posts){
+        // Now use home.ejs file for rendering
+        return res.render('home', {
+            title: "Codeial | Home",
+            posts: posts
     });
+});
+    
 }
 
 
