@@ -373,5 +373,13 @@ passport. authenticate wherein the local authentication is used.
 13. **Prefix** - It is basically the location where the server should look for the CSS files.
 
 
+### Using SCSS + Mini Assignment
+1. The files do not get compiled at the time of starting the server.
+2. Server compiles the files whenever we load the page it is required on, which makes it very slow.
+3. When we are in production mode, we have to send all the files beforehand.
+4. The assignment is to create the header and footer styles.
+5. Create two new files in the SCSS folder header.scss & footer.scss.
+6. In the layout.ejs file, link the header.css and footer.css files.
+7. After reloading, the SCSS files will get converted into CSS files from header.scss & footer.scss.
 
 
