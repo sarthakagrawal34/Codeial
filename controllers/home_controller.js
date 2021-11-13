@@ -20,14 +20,14 @@ module.exports.home=function(req,res)
     // })
     // });
 
-    //Populating the user of each post
+    //Populating the referred object that is user id of each post so as to use the user
     Post.find({}).populate('user').exec(function(err,posts){
         // Now use home.ejs file for rendering
         return res.render('home', {
             title: "Codeial | Home",
             posts: posts
+        });
     });
-});
     
 }
 

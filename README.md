@@ -417,4 +417,8 @@ We will create posts and comments in the application that we are building. But b
 4. Whenever we are loading the post from the database, we will load the whole user and show the desired data of the user on the home page. This is called pre-populating the user.
 5. Initially, the id of the user is only showing on the home page but now we need to fetch the user also from the database.
 
+### Check Authentication on Creating Post
+1. We need to establish the user identity by restricting the form to be visible to the part only when the user is signed in so we will make changes in home.ejs file
+2. We will put a check on the action level so that no one other than the user who is signed in will be able to write a post using html on chrome dev. so we make changes in posts_controller.js file.
+
 
