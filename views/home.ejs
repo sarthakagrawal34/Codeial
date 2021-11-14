@@ -24,6 +24,17 @@
                         </small>
                     </p>
                 </li>
+                <div class="post-comments">
+                    <!-- Check if the user is signed-in or not then only the form will appear for creating comments -->
+                    <% if(locals.user){ %> 
+                        <form action="/comments/create" method="post">
+                            <input type="text" name="content" placeholder="Type here to add comment...">
+                            <!-- We have to sent the comment to the post id to which we are creating this comment -->
+                            <input type="hidden" name="post" value="<%= post._id%>">
+                            <input type="submit" value="Add Comment">
+                        </form>
+                    <% } %>
+                </div>
             <% } %>
         </ul>
     </div>

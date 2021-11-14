@@ -9,7 +9,7 @@ module.exports.create = function(req,res){
         user: req.user._id
     }, function(err,post){
         if(err){
-            console.log('error in creatimg posts'); return;
+            console.log('error in creating posts'); return;
         }
         return res.redirect('back');
     });

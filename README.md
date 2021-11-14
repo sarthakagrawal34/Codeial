@@ -429,3 +429,12 @@ We will create posts and comments in the application that we are building. But b
 5. We will create a schema for comments inside the models folder by creating a new file **comment.js**.
 6. Whenever we are loading a post, we need to find out all the comments inside that post so that we include the ids of all the comments in the array inside the post schema.
 
+### Adding Comments to the DB
+1. We will create a form for comments, then create an action for comments, and then a route for it.
+2. We need to show the form only when the user is logged in.
+3. The method of the form will be POST, as we are going to send the data.
+4. We need to send the id of the post to which comments need to be added.
+5. We need to create the controller for the comments inside the controller folder **comments_controller.js**.
+6. We need to create a comment on the post. But before that, we need to find whether that post exists or not.
+7. We need to create the routes for the comments inside the routes folder **commentsRoute.js**.
+8. We have created the router and we need to call it from indexRoute.js file to make it usable.
