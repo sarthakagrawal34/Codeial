@@ -21,7 +21,17 @@ module.exports.home=function(req,res)
     // });
 
     //Populating the referred object that is user id of each post so as to use the user
-    Post.find({}).populate('user').exec(function(err,posts){
+    Post.find({})
+    .populate('user')
+    // populating the comments so as to display the content and user of the comment
+    .populate({
+        path: 'comments',
+        // populating the user of the comment
+        populate: {
+            path: 'user'
+        }
+    })
+    .exec(function(err,posts){
         // Now use home.ejs file for rendering
         return res.render('home', {
             title: "Codeial | Home",

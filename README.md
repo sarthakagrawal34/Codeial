@@ -438,3 +438,12 @@ We will create posts and comments in the application that we are building. But b
 6. We need to create a comment on the post. But before that, we need to find whether that post exists or not.
 7. We need to create the routes for the comments inside the routes folder **commentsRoute.js**.
 8. We have created the router and we need to call it from indexRoute.js file to make it usable.
+
+### Nesting Population:: Display Comments and Related User
+1. We need to show comments alongside the post and also the author of the comments.
+2. We will preload the comments and then display them.
+3. We need to preload multiple comments and the user of that comment.
+4. We need to show the comments on the home page.
+5. For more details see the home_controller.js and home.ejs file.
+
+**--------------------This ends how to create posts and comments and display it ---------------------------**
