@@ -421,4 +421,11 @@ We will create posts and comments in the application that we are building. But b
 1. We need to establish the user identity by restricting the form to be visible to the part only when the user is signed in so we will make changes in home.ejs file
 2. We will put a check on the action level so that no one other than the user who is signed in will be able to write a post using html on chrome dev. so we make changes in posts_controller.js file.
 
+### Creating Schema for Comments
+1. There can be a user that can have multiple posts and each post can have multiple comments on it. A case where a post has no comments is also possible.
+2. Inside the schema of the post, there is a reference to the user.
+3. Inside the comments, there will be two references of users and posts.
+4. A post can have an array of comments. Although, instead of using an array, we will just store an array of different objects, each object representing a comment.
+5. We will create a schema for comments inside the models folder by creating a new file **comment.js**.
+6. Whenever we are loading a post, we need to find out all the comments inside that post so that we include the ids of all the comments in the array inside the post schema.
 

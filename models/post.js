@@ -1,4 +1,4 @@
- // requiring mongoose library
+// requiring mongoose library
 const mongoose = require('mongoose');
 
 // Defining Post Schema that how will it be stored in MongoDB
@@ -13,8 +13,16 @@ const postSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         // ref is used to tell to refer to which schema i.e userSchema
         ref: 'User'
-    }
-
+    },
+    // including the array of id's of all comments in post schema itself to make the process faster
+    comments: [
+        {
+            // type will be the user's id as it is always unique
+            type: mongoose.Schema.Types.ObjectId,
+            // ref is used to tell to refer to which schema i.e commentSchema
+            ref: 'Comment'
+        }
+    ]
 },{
     // For Holding the time at which the post is created and updated at
     timestamps:true
