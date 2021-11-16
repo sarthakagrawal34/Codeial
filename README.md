@@ -447,3 +447,23 @@ We will create posts and comments in the application that we are building. But b
 5. For more details see the home_controller.js and home.ejs file.
 
 **--------------------This ends how to create posts and comments and display it ---------------------------**
+
+## Deleting and Updating Object in Database + Distributing Views
+In this part, we will be focussing on improvising what we already have and on the very important part of CRUD, that is, the U { update } and D { delete }
+
+### Deleting a Post (Authorized)
+1. The first step is to learn how to delete a post. While deleting the post, we need to remember that there are comments associated with the posts therefore we need to delete all the comments as well.
+2. To delete the post we need to create an action. The same action will delete the comments associated with the post.
+3. We need a route that maps to that action.
+4. We need to place a link to the route that we created to map the actions.
+5. We will be making this format of the route- “ /posts/destroy/:id “ where id will be the string params.
+6. Before deleting any post, we need to find whether that post id exists in the database or not.
+7. Additionally, before deleting any post, we need to make sure that the user who is deleting the post is the same one as who created the post.
+**NOTE** - When we are comparing the ids of two objects we need to convert them into a string. Using {.id} means we are converting the object id into a string.
+8. If the current user and post user are the same then, simply remove the post associated with the current user along with the comments that are associated with that post.
+9. If the current user and post user don’t match, then redirect to the same page on which the user was earlier.
+10. Create the button for deletion, and the button should be visible only when the user is logged in and If the current user and post user are the same.
+**Authorization on different levels** -
+1. At the **view level** - show the button only if the user is authorized to.
+2. At the **Router level** - Allow the user to be able to send the request only when the user is logged in.
+3. At the **action level** inside the controller - Allow the post to be deleted only if the post and the user that is sending the request are the same.
