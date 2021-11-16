@@ -477,3 +477,7 @@ In this part, we will be focussing on improvising what we already have and on th
 5. In comments_controller.js we have put the check of user-id matching, in the routes comments.js we have put the check if the user is logged in.
 6. Create the delete button and it will be only visible when the user id matches with the local user-id and the user are signed in.
 <!-- EXTRA - You can add another level of authentication - If the comments posts user-id match the current user-id the user should be able to delete the comment which is there on the user’s posts. -->
+
+### Distributing the Code into Partials
+1. As the code base grows the number of lines in a file also grows. To solve this problem, we will be wisely distributing the larger files into smaller files by creating partials.
+2. The largest file in this project is home.ejs. Hence,we will be using partials to distribute the code of home.ejs into multiple new files **_post.ejs & _comment.ejs**.
