@@ -25,7 +25,7 @@ module.exports.destroy = function(req,res){
     Post.findById(req.params.id, function(err,post){
         // if error in finding post
         if(err){
-            console.log('Error in finding post to delete',error);
+            console.log('Error in finding post to delete');
             return;
         }
         // if post founded then we have to check whether the owner of post is deleting or someone else as owner can only delete

@@ -463,7 +463,17 @@ In this part, we will be focussing on improvising what we already have and on th
 8. If the current user and post user are the same then, simply remove the post associated with the current user along with the comments that are associated with that post.
 9. If the current user and post user don’t match, then redirect to the same page on which the user was earlier.
 10. Create the button for deletion, and the button should be visible only when the user is logged in and If the current user and post user are the same.
+
 **Authorization on different levels** -
 1. At the **view level** - show the button only if the user is authorized to.
 2. At the **Router level** - Allow the user to be able to send the request only when the user is logged in.
 3. At the **action level** inside the controller - Allow the post to be deleted only if the post and the user that is sending the request are the same.
+
+### Deleting a Comment (Authorized)
+1. Deleting comments will be a little different from deleting posts because comments can be done on another user’s posts also or on the user itself post.
+2. We will create an action, a route, and a delete button with authorization and authentication checks.
+3. We need to find whether the comment we want to delete exists in the database. If it exists, we need the id of the comment.
+4. Before deleting a comment, we need to fetch the post id of that comment we want to delete.
+5. In comments_controller.js we have put the check of user-id matching, in the routes comments.js we have put the check if the user is logged in.
+6. Create the delete button and it will be only visible when the user id matches with the local user-id and the user are signed in.
+<!-- EXTRA - You can add another level of authentication - If the comments posts user-id match the current user-id the user should be able to delete the comment which is there on the user’s posts. -->
