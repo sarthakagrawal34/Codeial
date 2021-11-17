@@ -13,10 +13,13 @@ const usersController = require('../controllers/users_controller');
 //To test that whether the file is loaded
 console.log("Users Router loaded");
 
-//To access the user controller action when route is /profile and get the ejs file so we used get not post
+//To access the user controller action when route is /profile/:id and get the ejs file so we used get not post
 router.get('/profile/:id', passport.checkAuthentication, usersController.profile);
 // we provide a middleware so as to check whether the user is signed-in or not. 
 //If not then profile page will not open
+
+//To access the user controller action when route is /update/:id 
+router.post('/update/:id', passport.checkAuthentication, usersController.update);
 
 //To access the user controller action when route is /sign-up and get the ejs file so we used get not post
 router.get('/sign-up', usersController.signUp);

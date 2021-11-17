@@ -4,9 +4,27 @@ const User = require('../models/user');
 
 //Exporting module to browser when the route request this controller
 module.exports.profile = function(req,res){
-    return res.render('users',{
-        title: "User_profile"
+    User.findById(req.params.id, function (err,user) {
+        return res.render('users',{
+            title: "User_profile",
+            profile_user: user
+        });
     });
+}
+
+// Creating a action for the update profile action
+module.exports.update = function(req,res){
+    // checking again if the same user which is signed-in is making the update as he can make changes in html
+    if( req.user.id == req.params.id){
+        //{name: req.body.name, email: req.body.email} can also be used instead of req.body
+        User.findByIdAndUpdate(req.params.id, req.body, function(err,user){
+            if(err){console.log('error in finding a user'); return;}
+            return res.redirect('back');
+        });
+    }else{
+        // if unauthorized request
+        return res.status(401).send("Unauthorized");
+    }
 }
 
 

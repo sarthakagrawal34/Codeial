@@ -1,5 +1,9 @@
 // Requiring the Post schema
 const Post = require('../models/post');
+
+// Requiring the User scema
+const User = require('../models/user');
+
 //Defining action name and it's function
     // module.exports.actionName=function(req,res){}
 
@@ -31,11 +35,15 @@ module.exports.home=function(req,res)
             path: 'user'
         }
     })
+    // executing the action
     .exec(function(err,posts){
-        // Now use home.ejs file for rendering
-        return res.render('home', {
-            title: "Codeial | Home",
-            posts: posts
+        User.find({}, function (err,users) {
+            // Now use home.ejs file for rendering
+            return res.render('home', {
+                title: "Codeial | Home",
+                posts: posts,
+                all_users: users
+            });
         });
     });
     

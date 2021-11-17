@@ -479,5 +479,24 @@ In this part, we will be focussing on improvising what we already have and on th
 <!-- EXTRA - You can add another level of authentication - If the comments posts user-id match the current user-id the user should be able to delete the comment which is there on the user’s posts. -->
 
 ### Distributing the Code into Partials
-1. As the code base grows the number of lines in a file also grows. To solve this problem, we will be wisely distributing the larger files into smaller files by creating partials.
+1. As the code base grows the number of lines in a file also grows. To solve this problem, we will be wiselydistributing the larger files into smaller files by creating partials.
 2. The largest file in this project is home.ejs. Hence,we will be using partials to distribute the code of home.ejs into multiple new files **_post.ejs & _comment.ejs**.
+
+### User Profile links
+1. Now moving towards the update part of CRUD, we want the user to update his/her profile.
+2. For that, we have to first display the list of all the users on the home page home.ejs only if the user is signed in.
+3. To show all the users, we need to get all the lists of users from the controller home_controller.js.
+4. After getting the list of all the users, we have to change the routes, as we have changed the routes of the profile.
+5. As the route is changed, the actions also need to be changed.
+
+### Updating a User’s profile
+1. We have to first display the form for update when the user is viewing his/her profile page in users.ejs.
+2. If the user’s id matches with the profile page user-id, then show the form. If the user doesn’t match, then we will show only the profile information.
+3. We have to create a form in users.ejs where the action will go to **/users/update/:id**
+4. The form will be mapped to a route which will be mapped to action inside the controller.
+5. We have to create a route and action to be able to submit the form.
+6. We will create the action first and then map it to the routes.
+7. For creating an action, we have to call the module.exports.update in users_controller.js and check the update request { if the currently logged-in user id is equal to requesting user-id } then only update is allowed.
+8. If the id of the current user and requesting user-id don’t match, then return the HTTP status code **401** for the unauthorized user.
+9. We will create a route inside usersRoute.js which is mapped to the action we have created.
+
