@@ -500,3 +500,7 @@ In this part, we will be focussing on improvising what we already have and on th
 8. If the id of the current user and requesting user-id don’t match, then return the HTTP status code **401** for the unauthorized user.
 9. We will create a route inside usersRoute.js which is mapped to the action we have created.
 
+### Improving SCSS of the home page
+1. We have to improve the design of our website. For that, we will create an SCSS file for the home page and we will align the feed section and the user section side by side using flex.
+2. Create a new file inside the assets folder **home.scss** and link this file with home.ejs.
+3. Create the styling page as your assignment using flex property
