@@ -3,6 +3,7 @@ const User = require('../models/user');
 
 
 //Exporting module to browser when the route request this controller
+// let's not use async + await in this
 module.exports.profile = function(req,res){
     User.findById(req.params.id, function (err,user) {
         return res.render('users',{
@@ -13,6 +14,7 @@ module.exports.profile = function(req,res){
 }
 
 // Creating a action for the update profile action
+// let's not use async + await in this
 module.exports.update = function(req,res){
     // checking again if the same user which is signed-in is making the update as he can make changes in html
     if( req.user.id == req.params.id){
@@ -29,6 +31,7 @@ module.exports.update = function(req,res){
 
 
 // 2nd action for rendering sign up page
+// let's not use async + await in this
 module.exports.signUp = function(req,res){
     // If the user is already signed-in then sent it to the profile page
     if(req.isAuthenticated()){ // Here isAuthenticate() is a global function so can we use here
@@ -42,6 +45,7 @@ module.exports.signUp = function(req,res){
 }
 
 // 3rd action for sign in
+// let's not use async + await in this
 module.exports.signIn = function(req,res){
     // If the user is already signed-in then sent it to the profile page
     if(req.isAuthenticated()){
@@ -56,6 +60,7 @@ module.exports.signIn = function(req,res){
 }
 
 // Get the sign up data
+// let's not use async + await in this
 module.exports.create = function(req,res){
     if(req.body.password != req.body.confirm_password){
         return res.redirect('back');
@@ -77,12 +82,14 @@ module.exports.create = function(req,res){
 }
 
 // Sign in and create a session for a user and redirect back to the home page
+// let's not use async + await in this
 module.exports.createSession = function(req,res){
     // redirect to homepage
     return res.redirect('/');
 }
 
 // Sign out and destroy session of the user and return back to home page
+// let's not use async + await in this
 module.exports.destroySession = function(req,res){
     // Function to do logout. The function is provided by the passport library used
     req.logout();

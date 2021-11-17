@@ -504,3 +504,13 @@ In this part, we will be focussing on improvising what we already have and on th
 1. We have to improve the design of our website. For that, we will create an SCSS file for the home page and we will align the feed section and the user section side by side using flex.
 2. Create a new file inside the assets folder **home.scss** and link this file with home.ejs.
 3. Create the styling page as your assignment using flex property
+
+## Async Await + Error Handling
+We will be reducing the complexity of the code that we have built so far in terms of database queries. We will also be creating notifications for various tasks visible to users **Flash message**.
+
+### Converting to Async Await
+**Asynchronous** - When the task is running on the CPU at the same time the main thread of the node.js server is executing something else. Asynchronous code doesn't have to wait – the program can continue to run. We can do this to keep the site or app responsive, reducing waiting time for the user
+1. We will make the home_controller.js page clutter-free using either **promises or async-await**.
+2. **Async await** tells the server that the function contains some asynchronous statements and we need to wait with each async statement. Once it gets executed then and only then moves on to the next statement.
+3. It is not always necessary to change every part of the async code to async-await. Although it is a good practice to follow the same convention everywhere.
+4. We will convert posts_controller.js and comments_controller.js files into Async Await.
