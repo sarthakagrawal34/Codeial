@@ -514,3 +514,14 @@ We will be reducing the complexity of the code that we have built so far in term
 2. **Async await** tells the server that the function contains some asynchronous statements and we need to wait with each async statement. Once it gets executed then and only then moves on to the next statement.
 3. It is not always necessary to change every part of the async code to async-await. Although it is a good practice to follow the same convention everywhere.
 4. We will convert posts_controller.js and comments_controller.js files into Async Await.
+
+### Creating Flash Messages
+1. Flash messages are stored in the session cookies and they are cleared on the next request. Hence, whenever we sign in, the flash message is sent into the session cookie, and whenever we refresh that flash message is erased.
+2. We will be using the Connect Flash library for creating flash messages.
+3. To install the Connect Flash library use the command **npm install connect-flash** in the terminal.
+4. We have to require the library inside the index.js file, which is the entry point for the application.
+5. Using the app.use method, we will enable the connect-flash package. This comes right after the use of sessions inside the index.js file.
+6. Inside the users_controller.js file we will create two flash messages — one for sign-in and one for sign-out.
+7. We need to send the flash message to the response. For that, we will create a new file **middleware.js** inside the config folder.
+8. Then for accessing flash messages we do changes in layout.ejs file in which we display success message only if there is success and success.length>0 that is success includes some message.
+

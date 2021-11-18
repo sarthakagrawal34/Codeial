@@ -84,6 +84,8 @@ module.exports.create = function(req,res){
 // Sign in and create a session for a user and redirect back to the home page
 // let's not use async + await in this
 module.exports.createSession = function(req,res){
+    // Create a flash message and store it into locals which will be then use by the middleware.js for rendering it when the user log in
+    req.flash('success', 'Logged in Successfully');
     // redirect to homepage
     return res.redirect('/');
 }
@@ -93,6 +95,9 @@ module.exports.createSession = function(req,res){
 module.exports.destroySession = function(req,res){
     // Function to do logout. The function is provided by the passport library used
     req.logout();
+
+    // Create a flash message and store it into locals which will be then use by the middleware.js for rendering it when the user log out
+    req.flash('success', 'You have been logged out');
 
     // redirect to home page for signing up or signing in
     return res.redirect('/');
