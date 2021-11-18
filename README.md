@@ -525,3 +525,11 @@ We will be reducing the complexity of the code that we have built so far in term
 7. We need to send the flash message to the response. For that, we will create a new file **middleware.js** inside the config folder.
 8. Then for accessing flash messages we do changes in layout.ejs file in which we display success message only if there is success and success.length>0 that is success includes some message.
 
+### Introducing Noty
+1. We will make the notification look fancy, a little more animated using a library known as **Noty.js**.
+2. To include Noty.js in the project we have to include following links -
+3. Include the CSS link in the layout.ejs file 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.css" integrity="sha512-NXUhxhkDgZYOMjaIgd89zF2w51Mub53Ru3zCNp5LTlEzMbNNAjTjDbpURYGS5Mop2cU4b7re1nOIucsVlrx9fA==" crossorigin="anonymous" />.
+4. Include the script tag in the layout.ejs file 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.js" integrity="sha512-lOrm9FgT1LKOJRUXF3tp6QaMorJftUjowOWiDcG5GFZ/q7ukof19V0HKx/GWzXCdt9zYju3KhBNdCLzK8b90Q==" crossorigin="anonymous"></script>.
+
