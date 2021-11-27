@@ -533,3 +533,11 @@ We will be reducing the complexity of the code that we have built so far in term
 4. Include the script tag in the layout.ejs file 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.js" integrity="sha512-lOrm9FgT1LKOJRUXF3tp6QaMorJftUjowOWiDcG5GFZ/q7ukof19V0HKx/GWzXCdt9zYju3KhBNdCLzK8b90Q==" crossorigin="anonymous"></script>.
 
+### Summarizing
+1. To make the code look clean and modular, we used async-await.
+2. We have used Noty.js to show notifications in a fancy way.
+3. Notifications are shown using flash messages.
+4. We use flash messages which are set up in session cookies.
+5. We use the Connect Flash library to set up flash messages in session cookies.
+
+**-------------This ends how to use async+await which makes the code more easy to read --------------------------**

@@ -13,11 +13,13 @@ module.exports.create = async function(req,res){
             // storing the signed-in user's id 
             user: req.user._id
         });
+        req.flash('success', 'Post Created!');
         // When await request is completed return to the browser
         return res.redirect('back');
     }catch(err){
-        console.log('Error', err);
-        return;
+        // console.log('Error', err);
+        req.flash('error', err);
+        return res.redirect('back');
     }
 }
 
@@ -39,16 +41,19 @@ module.exports.destroy = async function(req,res){
             // delete the comment also of the same post and making it a await request
             await Comment.deleteMany({post:req.params.id});
 
+            req.flash('success', 'Post and associated comments deleted!');
             // if successful in deleting the post and comment 
             return res.redirect('back');
 
         }else{
             // if the user deleting the post is not the owner of the post
+            req.flash('error', 'You cannot delete this post!');
             return res.redirect('back');
         }
     }
     catch(err){
-        console.log('Error', err);
-        return;
+        // console.log('Error', err);
+        req.flash('error', err);
+        return res.redirect('back');
     }
 }

@@ -22,12 +22,17 @@ module.exports.create = async function(req,res){
             post.comments.push(comment);
             // Save the comment
             post.save();
+
+            // Using flash message too show that the comment is created
+            req.flash('success', 'Comment Created!');
+
             // Redirecting to home page
             res.redirect('/');   
         }
     }catch(err){
-        console.log('Error', err);
-        return;
+        // console.log('Error', err);
+        req.flash('error', err);
+        return res.redirect('back');
     }
 }
 
@@ -45,15 +50,21 @@ module.exports.destroy = async function(req,res){
             // Now delete the comment id from the post's comment array so we use update as we have to update the comment array in the post
             let post = await Post.findByIdAndUpdate(postId, { $pull: {comment:req.params.id}});
             
+            // Using flash message too show that the comment is deleted
+            req.flash('success', 'Comment Deleted!');
+
             // if successful
             return res.redirect('back');
         }
         else{
+            // Using flash message to show that the comment can't be deleted
+            req.flash('error', 'You can not delete the comment');
             // if the comment deleting user is not the owner of the comment
             return res.redirect('back');
         }
     }catch(err){
-        console.log('Error', err);
+        // console.log('Error', err);
+        req.flash('error', err);
         return;
     }
 }
