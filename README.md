@@ -541,3 +541,24 @@ We will be reducing the complexity of the code that we have built so far in term
 5. We use the Connect Flash library to set up flash messages in session cookies.
 
 **-------------This ends how to use async+await which makes the code more easy to read --------------------------**
+
+
+## Converting to AJAX
+
+### Creating a Post:: Sending Data
+We will be going to use JQUERY AJAX for the website.
+1. In { layout.ejs } paste the link { <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6/jquery.min.js"></script> } to include jquery just below noty link.
+2. We have to create a JS file that fetches the data from the form and sends it in the JSON format to the action.
+3. In the js folder inside the assets folder, we create a file {home_posts.js}.
+4. Include the script {home_posts.js} inside the {home.ejs} file to load the script.
+5. While creating a post, we need two things -
+    ○ A function that handles the submission of the post
+    ○ A function that receives the data of the created post and displays it.
+6. Create a function that sends the data to the controller action in {home_posts.js}
+7. Whenever the form is submitted, we don’t want it to submit own its own. Hence, we will use the parameter preventDefault.
+8. Submit the form manually using AJAX.
+9. Send in the data that we create the post for and serialize it. ( serializing means to convert the form data into JSON { key-value pair } ).
+10. Once we have submitted the form we will receive it in the { post_controller.js } and view the data in the { post_controller.js }.
+11. Check whether the request is AJAX. The type of an AJAX request is -> {XML HTTP Request} (XHR).
+12. If the request is AJAX then we have to return JSON with a status.
+13. Alongside data, the general format of interacting when we are sending data back by JSON is to include a message. The message can be that “Post is created”.
