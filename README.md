@@ -571,3 +571,22 @@ We will be going to use JQUERY AJAX for the website.
 5. The data that has been displayed has another key data that needs to be sent as a post.
 6. Prepend it to the list of posts that are displayed on the screen.
 7. Thus, we have successfully created a post, displayed on the screen with AJAX. Our page is not getting refreshed anymore while creating a new post.
+
+### Deleting a Post
+Post is now created and displayed using AJAX without the need to refresh. Now, let us try to
+do the following things:
+1. Sort the post according to the nearest post which was created in time first {Reverse
+chronological order}.
+2. Deleting the post.
+
+#### Sorting the Post
+1. In { home_controller } we need to add a sort function for the post.
+
+### Deleting the Post
+1. For deleting the post we need two things - To be able to send the data to the controller to delete it, and once we get confirmation all we need to do is remove that post from the DOM.
+2. Let’s assume that we will be getting data that has the id of the post that is deleted. (we will be sending it in the URL)
+3. We have just created a function to delete id from the DOM but we have not received the post id from the server & handled the AJAX request.
+4. We went to our {home_posts.js} and created a function that sends the post id to be deleted, blocks the natural behavior of the delete link, and sends it via AJAX parallelly.
+5. When the function sends the AJAX request it also receives some data that is the post id and it will be removed.
+6. The function that will be sending the AJAX request we need to populate the delete link argument and put it on the delete link.
+

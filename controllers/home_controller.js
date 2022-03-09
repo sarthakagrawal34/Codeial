@@ -12,6 +12,7 @@ module.exports.home= async function(req,res){
         //Populating the referred object that is user id of each post so as to use the user and also tell to await
         // first await request
         let posts = await Post.find({})
+        .sort('-createdAt')
         .populate('user')
         // populating the comments so as to display the content and user of the comment
         .populate({
