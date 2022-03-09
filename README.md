@@ -62,24 +62,24 @@ Controllers are the thing that directly responds to each HTTP Request that comes
 
 ## Add second router and controller
 1. Create a file in controller **users_controller**.
-● Export an action corresponding to users_controller i.e profile by: **module.exports.profile = function(req,res){}**
-2. Create a route for the controller to be accessible inside the route folder named as **users.js**.
-3. Repeat the same steps that we used to create the previous route index.js.
-4. We need to map a route to the users_controller profile action.
+2. Export an action corresponding to users_controller profile by: **module.exports.profile = function(req,res){}**
+3. Create a route for the controller to be accessible inside the route folder named as **users.js**.
+4. Repeat the same steps that we used to create the previous route index.js.
+5. We need to map a route to the users_controller profile action.
         <!-- const router = express.Router();
             const usersController = require('../controllers/users_controller');
             console.log("Users Router loaded");
             router.get('/profile', usersController.profile);
             module.exports = router; -->
-5. Now to be used by main server we make changes in index of routers that is we use it as a list of routes.
-6. Index router was accessing the home_controller. Considering index.js as the index or root of the route, we want this route to be controlling all the other routes or having a list of all the other routes. For that in index.js route we need to do:-
+6. Now to be used by main server we make changes in index of routers that is we use it as a list of routes.
+7. Index router was accessing the home_controller. Considering index.js as the index or root of the route, we want this route to be controlling all the other routes or having a list of all the other routes. For that in index.js route we need to do:-
         <!-- 
         router.get('/', homeController.home);
         router.use('/users', require('./users'));
         -->
-7. Add everything to git and commit it.
-8. Add another route and controller naming posts_controller and another action in home and user as a assignment.
-9. Add everything to git and commit it.
+8. Add everything to git and commit it.
+9. Add another route and controller naming posts_controller and another action in home and user as a assignment.
+10. Add everything to git and commit it.
 
 ## Installing EJS & Set Up the View Engine
 We need to send something back to the browser in HTML format from an HTML file from the Views folder using View Engine. **app.set()** is an object where different properties are predefined {keys are present}. Whenever we put a value of those keys, the express app takes up those values and does something with those values.
@@ -590,3 +590,10 @@ chronological order}.
 5. When the function sends the AJAX request it also receives some data that is the post id and it will be removed.
 6. The function that will be sending the AJAX request we need to populate the delete link argument and put it on the delete link.
 
+### Display notifications of creation and deletion using NOTY.
+1. Add/ delete comments dynamically with AJAX and then move on to NOTY.
+2. We created a JS file that sends the form data via AJAX.
+3. Using preventDefault we have prevented the default behavior to get submitted and we send the data to the server via AJAX parallelly asynchronously.
+4. On the server-side we used request.XHR and we checked whether the request is an AJAX request or not.
+5. If it was the AJAX request we have sent data in JSON format and displayed it using a function.
+6. For the delete link to be activated, we created another function that sends the delete request via AJAX. Once we get a successful response, we remove that element from the DOM

@@ -4,7 +4,7 @@ footer {
   align-items: center;
   position: relative;
   left: 0;
-  bottom: -100vh;
+  bottom: -1000vh;
   width: 100%;
   background-color: grey;
   color: white; }
