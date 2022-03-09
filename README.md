@@ -562,3 +562,12 @@ We will be going to use JQUERY AJAX for the website.
 11. Check whether the request is AJAX. The type of an AJAX request is -> {XML HTTP Request} (XHR).
 12. If the request is AJAX then we have to return JSON with a status.
 13. Alongside data, the general format of interacting when we are sending data back by JSON is to include a message. The message can be that “Post is created”.
+
+### Creating a Post:: Receiving Data
+1. For deleting the post we need some id that can uniquely identify the post.
+2. Add class to the delete button so that we can give it common styling and also attach click listeners to it.
+3. For creating the post in the DOM, we need a function that will help us in converting the text of HTML into a JQuery object.
+4. Create the function and pass the post data that we have received and return the text of HTML.
+5. The data that has been displayed has another key data that needs to be sent as a post.
+6. Prepend it to the list of posts that are displayed on the screen.
+7. Thus, we have successfully created a post, displayed on the screen with AJAX. Our page is not getting refreshed anymore while creating a new post.
