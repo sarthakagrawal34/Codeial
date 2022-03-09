@@ -651,3 +651,13 @@ We have to show the image that we have uploaded on the profile page.
 1. We have to declare an img tag and the src for this image will be users.avatar as this is the path for our image.
 2. We need to make this path available to the browser when the browser asks for it.
 3. Inside the { index.js } file, make the uploads path available to the browser using app.use method
+
+### Edge Case:: Replacing an Avatar
+Whenever we are uploading an avatar while one was already uploaded earlier, the previous one either gets replaced, deleted or archived somewhere else.
+1. Inside the file { users_controllers.js } { if there is any file in the request then we have to upload it } we have to check if the user already has an avatar associated with him /her.
+2. If it is present, we have to remove that avatar and upload a new one.
+3. For deleting the previous avatar, we need the FS { file system } and the path module.
+
+### Summarizing File Uploads
+1. You can limit the size of the file that the user can upload, you can limit the type of file that the user can upload using multer.
+2. Input type file keeps the first level of security, it doesn’t give you the path.

@@ -1,5 +1,7 @@
 //Require the models so as to use the database
 const User = require('../models/user');
+const fs = require('fs');
+const path = require('path');
 
 
 //Exporting module to browser when the route request this controller
@@ -38,6 +40,11 @@ module.exports.update = async function(req,res){
 
                 // if somebody uploaded any file
                 if (req.file) {
+                    // if the avatar is already present then we have to delete the avatar
+                    if (user.avatar) {
+                        fs.unlinkSync(path.join(__dirname, '..', user.avatar));
+                    }
+
                     // this is saving the path of the uploaded file into the avaatr field in the user
                     user.avatar = User.avatarPath + '/' + req.file.filename;
                 }
