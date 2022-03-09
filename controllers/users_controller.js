@@ -14,17 +14,44 @@ module.exports.profile = function(req,res){
 }
 
 // Creating a action for the update profile action
-// let's not use async + await in this
-module.exports.update = function(req,res){
-    // checking again if the same user which is signed-in is making the update as he can make changes in html
-    if( req.user.id == req.params.id){
-        //{name: req.body.name, email: req.body.email} can also be used instead of req.body
-        User.findByIdAndUpdate(req.params.id, req.body, function(err,user){
-            if(err){console.log('error in finding a user'); return;}
-            return res.redirect('back');
-        });
-    }else{
-        // if unauthorized request
+module.exports.update = async function(req,res){
+    // // checking again if the same user which is signed-in is making the update as he can make changes in html
+    // if( req.user.id == req.params.id){
+    //     //{name: req.body.name, email: req.body.email} can also be used instead of req.body
+    //     User.findByIdAndUpdate(req.params.id, req.body, function(err,user){
+    //         if(err){console.log('error in finding a user'); return;}
+    //         return res.redirect('back');
+    //     });
+    // }else{
+    //     // if unauthorized request
+    //     return res.status(401).send("Unauthorized");
+    // }
+
+    if (req.user.id == req.params.id) {
+        try {
+            let user = await User.findById(req.params.id);
+            User.uploadedAvatar(req, res, function (err) {
+                if (err) { console.log("***** Multer Error", err); }
+                console.log(req.file);
+                user.name = req.body.name;
+                user.email = req.body.email;
+
+                // if somebody uploaded any file
+                if (req.file) {
+                    // this is saving the path of the uploaded file into the avaatr field in the user
+                    user.avatar = User.avatarPath + '/' + req.file.filename;
+                }
+                user.save();
+                return res.redirect('back');
+            })
+            
+        } catch (err) {
+            req.flash("error", err);
+            return res.redirect("back");
+        }
+    } else {
+        //   if unauthorized request
+        req.flash('error', "Unauthorized");
         return res.status(401).send("Unauthorized");
     }
 }
