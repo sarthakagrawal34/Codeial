@@ -695,3 +695,23 @@ Whenever we are uploading an avatar while one was already uploaded earlier, the 
 1. We will be sending data from the database in the API and try to delete the post without authentication and authorization. We will render the list of posts that are inside the database. In the following step, we will delete one of the posts.
 2. The places where we have returned a flash message or the places we were redirecting the user to some other page that will be replaced by returning JSON.
 3. Right now we are using unauthorized and unauthenticated requests.
+
+## Authentication With APIs:: JWT { JSON Web Tokens }
+1. Whenever we are sending some data as a user to the server in the form of a request, the server checks whether that data matches a user in the database.
+○ If it matches a user, then the server generates a token or an encrypted key, stores it somewhere, and sends it back to the browser in the cookie.
+2. For every request that the browser makes, the cookies have the generated authentication token and the server establishes the identity of the user using that token.
+3. APIs do not have cookies. For that, we have to store the authentication token somewhere else.
+4. While using JWT, we don’t need to store anything in the database.
+5. Whenever we are sending in the details of the user, his identity is verified. The token generated has three parts separated by dots that are JWT JSON web tokens. { Header - What algorithm is used to encrypt JSON web tokens, payload - It contains the encrypted information, Signature - It is composed by some algorithm applied on the combination of header and payload}.
+6. These tokens are passed to the applications on android or mobile devices or any other frontend framework.
+7. Once this token is sent to the frontend framework, it stores the token in the local storage.
+8. The token contains all the necessary information. Hence, we will send that token in the header whenever we are sending back some requests The server in return establishes the identity.
+
+### Setting Up Passport JWT
+1. We will use Passport here as it is the core library for authentication.
+2. We need to install the passport jwt strategy using the command { npm install passport-jwt } in the command line.
+3. We need to mention every strategy that is being used in the { index.js } file of the application.
+4. Import passport jwt strategy in the { index.js } file.
+5. Create a new file inside the config folder { passport-jwt-strategy.js }.
+6. Import passport and passport-jwt strategy inside the { passport-jwt-strategy.js } file.
+7. We will be storing complete user information inside the payload information in an encrypted format.

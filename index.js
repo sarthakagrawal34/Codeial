@@ -16,6 +16,8 @@ const session = require("express-session");
 const passport = require("passport");
 //Importing local passport
 const passportLocal = require("./config/passport-local-strategy");
+//Importing jwt passport
+const passportJWT = require("./config/passport-jwt-strategy");
 // Importing the connect-mongo library which stores the session information
 const MongoStore = require("connect-mongo");
 // Importing the SASS middleware library
