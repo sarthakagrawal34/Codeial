@@ -661,3 +661,37 @@ Whenever we are uploading an avatar while one was already uploaded earlier, the 
 ### Summarizing File Uploads
 1. You can limit the size of the file that the user can upload, you can limit the type of file that the user can upload using multer.
 2. Input type file keeps the first level of security, it doesn’t give you the path.
+
+## APIs (making APIs and JWT authentication)
+### Introduction:: APIs:: Why and What
+1. We will study the workings of API from the server-side. We will also understand the process of making our API.
+2. Whenever we want two devices to communicate with minimalist resources, we use API { Application Programming Interface }.
+3. When we use an API, two devices communicate using a particular format. The most popular is the JSON.
+4. We are not sending HTML and receiving it back because we want our communication to be fast.
+5. Frameworks like Angular, VueJs, React are examples where we are using API to interact between server and client-side { framework }.
+
+### The Postman
+1. Though API is used when we are interacting using a frontend framework, we will beusing Postman which will act as our frontend framework.
+2. Download Postman using the given link below according to your OS.
+3. Create an account on Postman.
+4. Just like a form being submitted, we can use the form data to be sent over through Postman.
+5. We will be able to submit the form assuming the device we are using is an Android device and how the data would be communicated in an API when the form is submitted in the key and value that will be simulated over here.
+
+### Setting Up The Directory Structure
+1. The first part of creating an API is to set up the directory structure so that the code which sends the response and accepts the request in an API format is there in separate files.
+2. The controller folder will have an API folder that contains all the controllers that are interacting in JSON format.
+3. Routes will also have an API folder.
+4. V1 { old version } and V2 { latest version } - Let’s say the users are using the android application, we suddenly make some changes to the database. We would want that whenever a new set of users install the application they install the latest version. But we also do not want to bug the old users to change their version of the application. This is where we can use the concept of versions of API.
+5. Create one folder inside the controllers folder and routes folder named { API }.
+6. Create a new V1 folder for each API folder inside the controllers and route folder.
+7. API folders will have their index files. Each version also has its index files.
+
+### Rendering an API
+1. We have to make our first API. For that, we need to define routes and controller actions for the routes.
+2. Inside controllers API V1, create a new file { posts_api.js }
+3. Inside V1 in the routes folder, create a new file { posts.js }.
+
+### Playing With APIs
+1. We will be sending data from the database in the API and try to delete the post without authentication and authorization. We will render the list of posts that are inside the database. In the following step, we will delete one of the posts.
+2. The places where we have returned a flash message or the places we were redirecting the user to some other page that will be replaced by returning JSON.
+3. Right now we are using unauthorized and unauthenticated requests.

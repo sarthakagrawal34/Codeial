@@ -25,8 +25,11 @@ router.use('/posts', require('./postsRoute'));
 //To access the post controller action
 router.use('/comments', require('./commentsRoute'));
 
+// To access the api
+router.use('/api', require('./api'));
+
 //For any further routes, access from here
-    //router.use('/routerName', require('./routerFile'));
+//router.use('/routerName', require('./routerFile'));
 
 
 //Exporting the module
