@@ -715,3 +715,21 @@ Whenever we are uploading an avatar while one was already uploaded earlier, the 
 5. Create a new file inside the config folder { passport-jwt-strategy.js }.
 6. Import passport and passport-jwt strategy inside the { passport-jwt-strategy.js } file.
 7. We will be storing complete user information inside the payload information in an encrypted format.
+
+### Creating a Token
+1. Earlier we were signing in and some cookies were set in the background by passport.
+2. Now we will explicitly create JSON web tokens and send them using a library called JSON web tokens.
+3. Install JSON web tokens using the command { npm install jsonwebtoken } in the terminal.
+4. This is used to generate tokens and then the passport is capable of decrypting those encrypted token using the library.
+5. Create a new file inside the API folder inside the controllers folder named as { users_api.js }.
+6. Whenever a username and password are received we need to find that user and generate the JSON web token corresponding to that user using async-await style.
+7. We have defined that we will be finding JWT from the header and it would be decrypted using “codeial” because when we were generating the token we are using “codeial” as the key we were finding the user and passport will automatically set it as req. user in the request.
+
+### Authentication And Authorization
+1. We are setting the session to be false because we do not want the session cookie to be generated.
+2. We have set up the passport-jwt-strategy. Now we have to check whether the authentication is working or not. For that we need - { authentication token for the user, Id of the posts which need to be deleted }.
+3. We need to find the id of the post to be deleted.
+
+### Summarizing APIs
+1. We have studied how authentication with API works.
+2. We have an understanding of how the API works { get, post, delete request } and simulated using postman.
