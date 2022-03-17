@@ -18,6 +18,8 @@ const passport = require("passport");
 const passportLocal = require("./config/passport-local-strategy");
 //Importing jwt passport
 const passportJWT = require("./config/passport-jwt-strategy");
+//Importing jwt passport
+const passportGoogle = require("./config/passport-google-oauth2-strategy");
 // Importing the connect-mongo library which stores the session information
 const MongoStore = require("connect-mongo");
 // Importing the SASS middleware library

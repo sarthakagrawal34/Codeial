@@ -573,10 +573,8 @@ We will be going to use JQUERY AJAX for the website.
 7. Thus, we have successfully created a post, displayed on the screen with AJAX. Our page is not getting refreshed anymore while creating a new post.
 
 ### Deleting a Post
-Post is now created and displayed using AJAX without the need to refresh. Now, let us try to
-do the following things:
-1. Sort the post according to the nearest post which was created in time first {Reverse
-chronological order}.
+Post is now created and displayed using AJAX without the need to refresh. Now, let us try to do the following things:
+1. Sort the post according to the nearest post which was created in time first {Reverse chronological order}.
 2. Deleting the post.
 
 #### Sorting the Post
@@ -603,21 +601,13 @@ chronological order}.
 One of the very important parts of creating a web application or website, in general, is files. You have your files that run the code and show something on the browser. Also, when the user is interacting with the website, he/she would also want to upload some files. For example - Uploading your profile picture or posting an image on Facebook or any other social networking sites. In this module, we will be creating a page to upload our profile picture on the user’s page using a library.
 
 ### Uploading Files: How Does It Work?
-● We have our server that has been initialized on a file system or an operating system.
-● Let’s say on our profile page, we choose a picture and we send it to the server in the
-form of a file { File is a sequence or a stream of bytes }.
-● The server is connected to the database which is not saving the file. When the file is
-sent to the server we store our file inside the folder { avatar } and reference it
-inside the database.
-● The hash of every user in our database { MongoDB }, we have a key called an
-avatar and that key has a value which is the path to the file.
-● The separate folder is one of the local storage options that we use for smaller-scale
-projects.
-● In the real world, we store the file somewhere else in a bucket { A folder on the
-cloud is known as a bucket }. We store the file in the bucket and give the database
-the path of the file.
-● We can store more details in the database other than the path that is the file type,
-name of the file, size of the file, etc.
+1. We have our server that has been initialized on a file system or an operating system.
+2. Let’s say on our profile page, we choose a picture and we send it to the server in the form of a file { File is a sequence or a stream of bytes }.
+3. The server is connected to the database which is not saving the file. When the file isvsent to the server we store our file inside the folder { avatar } and reference it inside the database.
+4. The hash of every user in our database { MongoDB }, we have a key called an avatar and that key has a value which is the path to the file.
+5. The separate folder is one of the local storage options that we use for smaller-scale projects.
+6. In the real world, we store the file somewhere else in a bucket { A folder on the cloud is known as a bucket }. We store the file in the bucket and give the database the path of the file.
+7. We can store more details in the database other than the path that is the file type, name of the file, size of the file, etc.
 
 ### Installing Multer + Documentation
 1. Usually, when we are submitting the form we send some text data, some number data, etc but to send a file we have one input type called a { file } which is the attribute value.
@@ -733,3 +723,80 @@ Whenever we are uploading an avatar while one was already uploaded earlier, the 
 ### Summarizing APIs
 1. We have studied how authentication with API works.
 2. We have an understanding of how the API works { get, post, delete request } and simulated using postman.
+
+
+**-------------This ends how to use passport-jwt strategy --------------------------**
+
+## Social Authentication
+
+### Introduction:: Social Authentication:: Why?
+In this lecture, we will be studying third-party or social authentication. We all have seen thevbuttons like Sign-in using Facebook, log-in using Google or Github, on the various social platforms. This is known as Social Authentication. Whenever we click on that button it does two things - It saves a lot of time and user effort.
+
+1. These days since people already have accounts on places like Gmail, Facebook, Github, etc, it is possible to use an authentication service provided by them called OAuth { Which means their authentication can be used on my platform as well }.
+2. We will be using Google login in this module but soon you will gain the necessary understanding to look into other authentication modules.
+3. We will implement OAuth by using cookies.
+
+### Creating Credentials on Google
+1. To be able to use OAuth - 2 { Google services }, we need to tell Google what application is going to use it.
+2. We need to establish the identity and tell Google for security purposes that we are taking out the information of that user. The user also gives out permission.
+3. Go to { My Projects } where you have your list of projects and click on a {new project }
+4. Give the name of your project ( codeial -sample ) and click on {create it}.
+5. Go on to the title project and click on create credentials.
+6. Credentials are for OAuth -2.
+
+In OAuth -1, we generate the access token. Once we got it, we kept on using it until and
+unless that token expired.
+In OAuth - 2, we get only the desired information, your token has a limited set of
+permissions and your token can anytime be revoked by Google but it is much more secure
+as compared to OAuth - 1.
+
+1. Click on the option to create credentials, there we need to click on OAuth client ID.
+**Warning** - To create an OAuth client ID you must first set up the product name onvthe consent screen.
+2. Click on the configure consent screen.
+3. Give your application name there and leave the rest of the fields empty for now and save it.
+4. The application type is a web application, the name will be the name of your project.
+5. In Authorized Javascripts origin fill { http://localhost:8000 }.
+6. In Authorized redirect URLs fill {http://localhost:8000/users/auth/google/callback }[ For call back URL we need to mention it here and in code also ].
+7. Click on the create button to create credentials.
+8. You will be getting your client ID and client secret.
+
+### Social Authentication:: How does it work
+1. This involves the third-party authentication provider which establishes the identity of the user.
+2. There will be a user, third-party authentication provider, and server with the database.
+3. The user comes and clicks on the sign-in or sign up with google. A pop-up opens in another window that asks us to sign in with google if we are not signed in or we have signed using multiple accounts. For the latter case, we choose from one of those accounts.
+4. Google then asks for permission from the user, that ‘project_name is asking for your permission to access your account’. This happens only if the user is accessing the website for the first time.
+5. When the pop-up opens and we submit some credentials or select an account, the request is redirected to the servers of Google. Google checks its database whether the user exists or not. If the user exists, Google checks if and the credentials are correct or not.
+6. If the authentication is unsuccessful, you will be redirected back to the login page with an error.
+7. Once the credentials are matched successfully, the user will be redirected to another URL on the same browser for the server which is called using the callback URL with some data of the signed-in user. This is created by the developer of the website.
+8. The server checks with the database whether the Email ID that has been provided by Google is there in the database or not.
+9. If it is there in the database, the user signs in successfully.
+10. If, however, if the Email ID is not in the database, then OAuth will create the user credentials in the database, post which the user will be signed in to the website.
+
+### Setting up Passport - Google - OAuth
+We will be using a library called crypto to generate random, unique passwords.
+1. Create a file inside config { passport-google -oauth-2-strategy.js }.
+2. We need to install some library for that { npm install passport-google-oauth }.
+3. Require passport library in { passport-google -oauth-2-strategy.js } file.
+4. Require passport-google-oauth in { passport-google -oauth-2-strategy.js } file.
+5. We need to install the crypto library { npm install crypto } and require it inside { passport-google -oauth-2-strategy.js } file.
+6. Require users file from the models folder.
+7. We need to tell passport to use google strategy using passport.use in which we pass in the options - { client ID, client secret, callback URL }.
+8. We need to put in the callback function which will be taking { access token, refresh token, profile information, and the final function which will be taking callback from this function }.
+9. If there is some error then console that error and return.
+10. If we find the user then we will call done without an error and pass the user to it {if found, set this user as req. user} if the user is not found then create the user {if not found, create the user and set it as req. user }.
+11. While creating the user uses a profile, the profile has different fields { display name,
+email, password using crypto}.crypto.randomBytes(20).toString(‘hex’)
+
+### Using Google Auth:: With a Link
+Place the sign-in button, make the routes and get it working.
+1. Inside the routes folder and in {users.js} file we will be creating two routes - { when we will click on the button for google sign-in for fetching the data when google fetches the data from the database and sends it back to the routes which is the callback URL }.
+2. The scope is the information that we are looking to fetch - { profile, email}.
+3. Until and unless we ask for a refresh token it is not coming up.
+
+### Summarizing Google Sign in
+1. We have used three different strategies for authentication.
+2. Database, different models, relationships between models.
+3. Aspects related to MVC [Models, Views, Controllers] architecture.
+
+
+**-------------This ends how to use passport-google strategy --------------------------**
