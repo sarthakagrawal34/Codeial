@@ -800,3 +800,43 @@ Place the sign-in button, make the routes and get it working.
 
 
 **-------------This ends how to use passport-google strategy --------------------------**
+
+## Parallel Jobs + Mailer
+
+### Introduction::Mailers
+1. We will be studying how to send email notifications to the user whenever specific events happen { someone likes your post, someone replied to your post, etc }.
+2. We will be also looking at the optimization of those emails.
+3. Suppose there is a user who has performed some actions or makes some requests. Let’s suppose the website has a provision that when a user makes a new comment, it should send an email to the user on whose post the comment was made.
+4. The server has some logic written on it. So it requests the MAIL server like { GMAIL, Yahoo, SendGrid, Zoho} to send an email. It will send that email to the remote user to whom we want to send it, in return, it will give a response whether the request of sending mail is successful or not.
+5. MAIL servers including { GMAIL, Yahoo, SendGrid, Zoho} are some of the dedicated services that help in sending emails in mass or bulk.
+6. In this lecture, we will be using GMAIL.
+7. We request the server to send mails using the SMTP {Simple Mail Transfer Protocol } protocol.
+8. It will define how both the mail server and other servers will communicate.
+9. Since we will be utilizing an API of the mailing server, we will need to establish some sort of identity.
+
+### Setting Up Nodemailer
+1. We will be installing the module Nodemailer and setting up the config for it.
+2. We will be setting up the file that will have the function to send mail. It will have predefined content.
+3. We want to send mails with some HTML content that will have different formatting, we will be sending those emails using templates.
+4. To install nodemailer use the command { npm install nodemailer } in the terminal.
+5. Nodemailer has two things- transporters and template { transporter defines the configuration using which we will be sending emails }.
+6. We will create a separate folder in views wherein we define the mail template to be used.
+7. Inside the config folder, we need to create a new file { config.js }.
+8. We need to import nodemailer inside the { config.js } file.
+9. We need to define the transporter that will be attached to the nodemailer.
+10. For the rendering of the template we need to require EJS in the file
+
+### Sending Our First Email via SMTP
+1. We need a file that will help in sending the emails repeatedly to different users with the same text. We need a template for the same.
+2. The triggering point of mail is whenever one user comments on someone’s posts, let the mail come to the user itself who is commenting in the initial stage. Later, send that mail to the user who has posted the post.
+3. We will create a new folder { mailers }, and inside it a new file { comments_mailer.js }.
+4. We need to import nodemailer inside the { comments_mailer.js } file.
+5. We need to create a function that will create the mail.
+6. We need to call this mailer that we have created inside the { comments-controller.js } file.
+
+### Send HTML Template Emails
+1. We need to set up the template so that we can send HTML emails.
+2. We will create a mail file that will be used for sending mail to the person.
+3. Inside the views/mailers, we need to create a folder for comments.
+4. Inside the comments folder we need to create a file { new_commnents.ejs}.
+5. We will be mentioning inside the { comments.mailer.js } that we are going to use { new_commnents.ejs} file inside the comments folder as the template.

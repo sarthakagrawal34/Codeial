@@ -4,6 +4,8 @@ const Comment = require("../models/comment");
 // Requiring the post schema
 const Post = require("../models/post");
 
+const commentsMailer = require('../mailers/comments_mailer');
+
 //Exporting module to browser when the route request create controller
 module.exports.create = async function (req, res) {
   try {
@@ -23,9 +25,9 @@ module.exports.create = async function (req, res) {
       // Save the comment
       post.save();
       
+      comment = await comment.populate("user", "name email");
+      commentsMailer.newComment(comment);
       if (req.xhr) {
-        // Similar for comments to fetch the user's id!
-          comment = await comment.populate("user", "name");
 
         return res.status(200).json({
           data: {
