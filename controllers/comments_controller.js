@@ -1,10 +1,11 @@
 // Requiring the comments schema
 const Comment = require("../models/comment");
-
 // Requiring the post schema
 const Post = require("../models/post");
-
+// Requiring the comments mailers
 const commentsMailer = require('../mailers/comments_mailer');
+// Requiring the likes Schema
+const Like = require('../models/like');
 
 //Exporting module to browser when the route request create controller
 module.exports.create = async function (req, res) {
@@ -66,7 +67,9 @@ module.exports.destroy = async function (req, res) {
         $pull: { comment: req.params.id },
       });
 
-      console.log("*******", req.xhr);
+      // destroy the associated likes for this comment
+      await Like.deleteMany({ likeable: comment._id, onModel: 'Comment' });
+
       // send the comment id which was deleted back to the views
       if (req.xhr) {
         return res.status(200).json({

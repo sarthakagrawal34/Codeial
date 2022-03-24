@@ -22,6 +22,12 @@ const postSchema = new mongoose.Schema({
             // ref is used to tell to refer to which schema i.e commentSchema
             ref: 'Comment'
         }
+    ],
+    likes: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Like'
+        }
     ]
 },{
     // For Holding the time at which the post is created and updated at

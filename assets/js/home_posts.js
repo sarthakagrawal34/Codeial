@@ -14,20 +14,23 @@
                 // this will serialize the data of the form in json data
                 data: newPostForm.serialize(),
                 success: function (data) {
-                    console.log('data',data);
-                    let newPost = newPostDom(data.data.post);
-                    $("#posts-list-container>ul").prepend(newPost);
-                    deletePost($(" .delete-post-button", newPost));
-                    // call the create comment class
-                    new PostComments(data.data.post._id);
+                  console.log("data", data);
+                  let newPost = newPostDom(data.data.post);
+                  $("#posts-list-container>ul").prepend(newPost);
+                  deletePost($(" .delete-post-button", newPost));
+                  // call the create comment class
+                  new PostComments(data.data.post._id);
 
-                    new Noty({
-                        theme: "relax",
-                        text: "Post published!",
-                        type: "success",
-                        layout: "topRight",
-                        timeout: 1500,
-                    }).show();
+                  // enable the functionality of the toggle like button on the new post
+                  new ToggleLike($(" .toggle-like-button", newPost));
+
+                  new Noty({
+                    theme: "relax",
+                    text: "Post published!",
+                    type: "success",
+                    layout: "topRight",
+                    timeout: 1500,
+                  }).show();
                 },
                 error: function (err) {
                     console.log(err.responseText);
@@ -38,31 +41,38 @@
 
     // method to create a post in DOM
     let newPostDom = function (post) {
-    return $(`<li id="post-${post._id}">
-            <p>
-                <small>
-                    <a class= "delete-post-button" href="/posts/destroy/${post._id}">X</a>
-                </small>
-                
-                ${post.content}
-                <br>
-                <small>
-                    ${post.user.name}
-                </small>
-            </p>
-            <div class="post-comments"> 
-                <form action="/comments/create" method="post">
-                    <input type="text" name="content" placeholder="Type here to add comment..." required>
-                    <!-- We have to sent the comment to the post id to which we are creating this comment -->
-                    <input type="hidden" name="post" value=${post._id}>
-                    <input type="submit" value="Add Comment">
-                </form>
-                <div class="post-comments-list">
-                    <ul id= "post-comments-${post._id}">
-                    </ul>
+        // show the count of zero likes on this post
+        return $(`<li id="post-${post._id}">
+                <p>
+                    <small>
+                        <a class= "delete-post-button" href="/posts/destroy/${post._id}">X</a>
+                    </small>
+                    
+                    ${post.content}
+                    <br>
+                    <small>
+                        ${post.user.name}
+                    </small>
+                    <br />
+                    <small>
+                        <a href="/likes/toggle/?id=${post._id}&type=Post" class="toggle-like-button" data-likes= "0">
+                            0 Likes
+                        </a>
+                    </small>
+                </p>
+                <div class="post-comments">
+                    <form action="/comments/create" method="post">
+                        <input type="text" name="content" placeholder="Type here to add comment..." required>
+                        <!-- We have to sent the comment to the post id to which we are creating this comment -->
+                        <input type="hidden" name="post" value=${post._id}>
+                        <input type="submit" value="Add Comment">
+                    </form>
+                    <div class="post-comments-list">
+                        <ul id= "post-comments-${post._id}">
+                        </ul>
+                    </div>
                 </div>
-            </div>
-        </li>`);
+            </li>`);
     };
 
     // method to delete a post from DOM

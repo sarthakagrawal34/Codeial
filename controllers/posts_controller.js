@@ -4,6 +4,9 @@ const Post = require("../models/post");
 // Requiring the comment schema as we require in deleting the comment
 const Comment = require("../models/comment");
 
+// Requiring the like schema as we require in deleting the like
+const Like = require("../models/like");
+
 //Exporting module to browser when the route request create controller
 module.exports.create = async function (req, res) {
   try {
@@ -46,6 +49,11 @@ module.exports.destroy = async function (req, res) {
     // post.user gives id of the owner of post as string and req.user.id also gives the user's id as string
     // .id means converting the object id into string
     if (post.user == req.user.id) {
+      
+      // delete the associated likes for the post and all its comments' likes too
+      await Like.deleteMany({ likeable: post, onModel: 'Post' });
+      await Like.deleteMany({ _id: { $in: post.comments } });
+      
       // delete the post
       post.remove();
 

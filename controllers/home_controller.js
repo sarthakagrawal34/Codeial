@@ -17,11 +17,14 @@ module.exports.home= async function(req,res){
         // populating the comments so as to display the content and user of the comment
         .populate({
             path: 'comments',
-            // populating the user of the comment
+            // populating the user & like of the comment
             populate: {
                 path: 'user'
+            },
+            populate: {
+                path: 'likes'
             }
-        });
+        }).populate('likes');
 
         // 2nd await request
         let users = await User.find({});

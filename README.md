@@ -840,3 +840,32 @@ Place the sign-in button, make the routes and get it working.
 3. Inside the views/mailers, we need to create a folder for comments.
 4. Inside the comments folder we need to create a file { new_commnents.ejs}.
 5. We will be mentioning inside the { comments.mailer.js } that we are going to use { new_commnents.ejs} file inside the comments folder as the template.
+
+## Friends + Likes
+### Introduction:: New Relationships :: In Database
+We have learned three types of relationships - one to one, one to many, and many to many {posts and comments }.
+We will be focussing upon the polymorphic relationship { likes }, many to many relationships implemented via join, and self-referential many to many relationships.
+
+### Polymorphic Relations
+1. Poly means multiple forms. In polymorphic relations, there can be multiple types of parents.
+2. We will be implementing likes functionality using polymorphic relations.
+3. The table for likes will comprise fields that are { user, parent type, parent id }.
+4. In the case of a no-SQL database { MongoDB }, initially likes will have a user field with the reference.
+5. Then there would be a field named as a parent, which will have reference type and reference id inside of it.
+
+### Schema Setup:: Likes
+1. Mongoose gives the feature of dynamic references { you refer to different documents dynamically depending upon which object the like is being placed on }.
+2. We have to create a schema for likes { like.js } inside the model folder.
+3. We have to require mongoose in the file.
+4. We have to define different fields inside the file { user, the type on which the like has been placed, and the object id on which the like has been placed }.
+5. RefPath - We are going to place a path to some other field that is there and that field is going to define which type of object the like has been taking place.
+6. We have to tell the post that it is going to have an array of like id’s.
+7. Whenever we are looking out for the likes of a single comment, we should have an array of those likes inside the comment itself to make it easy to reference.
+8. The **enum** keyword is used to restrict a value to a fixed set of values. It tells that the value of onmodel (a property that we defined) in each like, can either be on a post or comment and nothing other than that.
+
+### Actions and Routes:: Likes
+1. We have to create controllers actions and specific routes for the actions that we will create.
+2. We will create an action in the likes controller that would be called toggle likes.
+3. We have to create a new file inside the controllers folder { likes_controller.js }.
+4. We need to import three models { likes, posts, and comments }.
+5. We need to define the routes. For that, we create a new file { likesRoute.js } inside the routes folder.
