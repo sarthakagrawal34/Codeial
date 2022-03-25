@@ -1,5 +1,7 @@
 // Requiring the express server in the main server
 const express = require("express");
+// Requiring the environment config
+const env = require('./config/environment');
 // Require the cookie parser library for parsing the cookie information
 const cookieParser = require("cookie-parser");
 //Firing the express server
@@ -28,31 +30,35 @@ const sassMiddleware = require("node-sass-middleware");
 const flash = require("connect-flash");
 // Require the middleware which have been created for flash messages
 const customMware = require("./config/middleware");
+const path = require('path');
 
 //Middlewares
 
-// sass middlware just before the server start so as the middleware precompiled the scss file to css file
-app.use(
-  sassMiddleware({
-    // Path from where we pick up the SCSS files to convert them into CSS
-    src: "./assets/scss",
-    // Path where we put the CSS files
-    dest: "./assets/css",
-    // to display errors coming while compiling
-    debug: true,
-    // everything to be in a single line or do we want it in multiple lines
-    outputStyle: "extended",
-    // location where the server should look for the CSS files
-    prefix: "/css",
-  })
-);
+if (env.name == 'development') {
+  // sass middlware just before the server start so as the middleware precompiled the scss file to css file
+  app.use(
+    sassMiddleware({
+      // Path from where we pick up the SCSS files to convert them into CSS
+      src: path.join(__dirname, env.asset_path, "scss"),
+      // Path where we put the CSS files
+      dest: path.join(__dirname, env.asset_path, "css"),
+      // to display errors coming while compiling
+      debug: true,
+      // everything to be in a single line or do we want it in multiple lines
+      outputStyle: "extended",
+      // location where the server should look for the CSS files
+      prefix: "/css",
+    })
+  );
+}
+
 
 // express.urlencoded() function is a built-in middleware function in Express to read the request url
 app.use(express.urlencoded());
 // Now use cookie parser to read the cookies
 app.use(cookieParser());
 // Use the static files
-app.use(express.static("./assets"));
+app.use(express.static(env.asset_path));
 // Make the uploads path available to the browser
 app.use("/uploads", express.static(__dirname + "/uploads"));
 
@@ -74,7 +80,7 @@ app.use(
   session({
     name: "codeial",
     // TODO change the secret before deployement in production mode
-    secret: "blahsomething",
+    secret: env.session_cookie_key,
     // whenever there is a request that is not initialized { when the user has not logged in }, we don’t need to store extra data in the session cookies.
     saveUninitialized: false,
     // When the identity is established we don’t have to rewrite or save the data if it is not changed.

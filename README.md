@@ -869,3 +869,24 @@ We will be focussing upon the polymorphic relationship { likes }, many to many r
 3. We have to create a new file inside the controllers folder { likes_controller.js }.
 4. We need to import three models { likes, posts, and comments }.
 5. We need to define the routes. For that, we create a new file { likesRoute.js } inside the routes folder.
+
+## Gulp:: Getting Deployment Ready
+### Introduction to Production Environment
+We have created a huge folder structure wherein different folders are handling different departments of the code.
+1. Production Environment - A production environment is the setting where the latest working version of a computer program is installed and made available to end-users. Therefore it must always be in working condition, bug-free, and available when the end-user needs it.
+
+### Beginning Creating Environment
+The purpose of a development environment is to have a place for a developer to test anything they want without worrying about it affecting any end-users or content editors working on a live website.
+1. We need to recall everything that we have done in the project, such as the password that we have chosen, the secret key generators, etc. We need to keep all this in one file.
+2. We need to create a file inside the { config } folder named as { Environment.js }.
+3. This file will contain two environments - production and development, for that we need to define two constants.
+4. For now, we will export development and once we fill the production part we choose between what needs to be exported.
+5. We need to get in different passwords from different files and put them in the development constant inside {Environment.js }.
+6. We need a session cookie key inside the { Environment.js } file.
+7. We need a database name inside the development constant.
+8. We need an SMTP object from the nodemailer file inside the development constant.
+9. We need client id, client secret, and callback URL from the {passport-google-oauth2-startegy.js } file.
+
+### Environment Variables:: Production Environment
+1. We need to set up the production environment like the way we have set up the development environment. The only difference is the keys that we can see in the development environment that should be hidden. All of these will be stored somewhere in a file on the system and not in the code and that file will be accessed by the code inside the {environment.js } file so that the developers do not get access to the production level keys.
+
